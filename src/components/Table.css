@@ -1,0 +1,16 @@
+.table {
+    width: 100%;
+    border: 5px solid #000000;
+  }
+  
+  .header {
+    background-color: #38f6f2;
+    font-weight: bold;
+    border: 2px solid black;
+  }
+  
+  .cell {
+    border-top: 3px solid black;
+    margin: 1px;
+    padding: 1px;
+  } 

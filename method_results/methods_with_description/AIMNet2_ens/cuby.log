@@ -1,0 +1,68 @@
+        _______  
+       /\______\ 
+      / /      / 
+     / / Cuby /   Dataset calculation
+     \/______/   
+                 
+==============================
+*** Open Babel Warning  in PerceiveBondOrders
+  Failed to kekulize aromatic bonds in OBMol::PerceiveBondOrders
+
+==============================
+*** Open Babel Warning  in PerceiveBondOrders
+  Failed to kekulize aromatic bonds in OBMol::PerceiveBondOrders
+
+==============================
+*** Open Babel Warning  in PerceiveBondOrders
+  Failed to kekulize aromatic bonds in OBMol::PerceiveBondOrders
+
+==============================
+*** Open Babel Warning  in PerceiveBondOrders
+  Failed to kekulize aromatic bonds in OBMol::PerceiveBondOrders
+
+==============================
+*** Open Babel Warning  in PerceiveBondOrders
+  Failed to kekulize aromatic bonds in OBMol::PerceiveBondOrders
+
+==========================================================================================
+name                                             E      Eref     error  error(%)
+------------------------------------------------------------------------------------------
+01 10GS                                   -214.438  -242.583    28.145    11.602
+02 2CET                                   -208.797  -247.699    38.902    15.705
+03 2FVD                                    -56.885   -88.726    31.841    35.887
+04 2OBF                                   -151.589  -199.162    47.573    23.886
+05 2P4Y                                   -107.376  -157.143    49.767    31.670
+06 2VOT                                   -208.444  -238.717    30.273    12.682
+07 2VW5                                    -64.671   -94.099    29.428    31.273
+08 2XB8                                   -150.319  -178.476    28.157    15.776
+09 2YKI                                    -35.594   -92.145    56.551    61.372
+10 2ZX6                                   -199.859  -231.047    31.188    13.499
+11 3G0W                                    -20.076   -66.594    46.518    69.853
+12 3GNW                                    -34.915   -77.382    42.467    54.880
+13 3NOX                                   -211.446  -244.475    33.029    13.510
+14 3PE2                                   -104.072  -127.532    23.460    18.396
+15 4GID                                   -108.352  -190.367    82.015    43.083
+==========================================================================================
+RMSE               42.537   kcal/mol
+MUE                39.954   kcal/mol
+------------------------------------------------------------------------------------------
+MSE                39.954   kcal/mol
+min                23.460   kcal/mol
+max                82.015   kcal/mol
+range              58.555   kcal/mol
+min abs            23.460   kcal/mol
+max abs            82.015   kcal/mol
+==========================================================================================
+RMSE               35.447   %
+MUE                30.205   %
+MSE                30.205   %
+min                11.602   %
+max                69.853   %
+range              58.251   %
+min abs            11.602   %
+max abs            69.853   %
+------------------------------------------------------------------------------------------
+RMSE/|avg|         25.768   %
+MUE/|avg|          24.204   %
+==========================================================================================
+
