@@ -17,6 +17,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "generate:data": "python Backend.py",
+    "predeploy": "npm run generate:data && npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

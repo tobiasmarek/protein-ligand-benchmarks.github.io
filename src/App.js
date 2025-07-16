@@ -1,5 +1,4 @@
 import Chart from "chart.js/auto";
-import axios from "axios"; 
 import React from "react";
 import { CategoryScale } from "chart.js";
 import { useState } from "react";
@@ -12,6 +11,7 @@ import Video from "./components/Video.js";
 import {Model_data} from "./utils/Table_dataML.js";
 import Table from "./components/Table.js";
 
+
 Chart.register(CategoryScale);
 
 export default function App() {
@@ -19,11 +19,20 @@ export default function App() {
   const[backendData, setbackendData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:9001/backend', {responseType: 'json'})
-      .then(response => {setbackendData(response.data); })
-      .catch(error => console.error("Error fetching list:", error));
+    fetch('/data.json',{
+      headers : { 
+        'Accept': 'application/json'
+       }
+    }
+    )
+    .then((response) => response.json())  
+    .then((data) => setbackendData(data) // Access the data as a JavaScript object
+    )
+    .catch(error => console.error('Error loading JSON:', error));
   }, []);
   
+
+
   var [sortOn, setsortOn] = useState("accuracy");
   const columns = ["name", "category", "description", "references", "code", "accuracy", ""];
 
@@ -218,7 +227,6 @@ export default function App() {
           <strong>Thanks for visitng!</strong><br/>
           - *Names*
         </p>
-        <button > CLICK ME {JSON.stringify(backendData)}</button>
       </div>
 
     </div>
