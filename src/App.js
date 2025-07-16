@@ -3,12 +3,9 @@ import React from "react";
 import { CategoryScale } from "chart.js";
 import { useState } from "react";
 import { useEffect } from "react";
-//import { Data } from "./utils/Data.js";
 import { BarChart } from "./components/BarChart.js";
 import "./App.css";
 import Video from "./components/Video.js";
-//import { Data2 } from "./utils/Data_in_units.js";
-import {Model_data} from "./utils/Table_dataML.js";
 import Table from "./components/Table.js";
 
 
@@ -89,7 +86,6 @@ export default function App() {
         }
       }}});
 
-  const [animate, setAnimate] = useState(true);
   //state for animaiton (false is off and true is on) True origionally to show the element
   function handleTable(value){
     setsortOn(value);

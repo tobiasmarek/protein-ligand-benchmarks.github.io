@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import video from '../PyMolmovie.mp4'; 
 
 //Deleted this because it covered the video: <h2 style={{ textAlign: "center" }}>Video Example</h2>

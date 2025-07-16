@@ -1,6 +1,6 @@
 import './Table.css';
 import React from 'react';
-import { useState, useEffect } from 'react'
+
 
 
 export default function Table({columns, modelData, sortOn}){
@@ -42,7 +42,7 @@ if (sortOn !== null || sortOn !== holder){
               
               ((col === "code" || col === "references") && Array.isArray(row[col]))? 
                 row[col].map((url, idx) => (
-                  <a key = {idx} href={url} target="_blank">Link</a>
+                  <a key = {idx} href={url} target="_blank" rel="noreferrer">Link</a>
                 )) : typeof row[col] === "object" && row[col] !== null? (JSON.stringify(row[col])):(
                 row[col])
               }
