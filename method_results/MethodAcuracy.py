@@ -92,7 +92,6 @@ def giveData():
 
 
     wholeData.append(newdict)
-    print(wholeData)
     return(wholeData)
 
 giveData()

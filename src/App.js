@@ -195,10 +195,10 @@ export default function App() {
         </div>
 
 
-        <p className="BP1">
-          <p elementclassName="Inner-Text">
+        <div className="BP1">
+          <div elementclassName="Inner-Text">
             Welcome: {" "}
-          </p>
+          </div>
           <br />
           This graph highlights the accuracy of interactive energy
           calculations made by an array of calculators that use machine learning(ML) 
@@ -215,7 +215,7 @@ export default function App() {
            <br />
           Thanks for visiting!
           <Video/>
-        </p>
+        </div>
       </div>
 
       <div className="ending">
