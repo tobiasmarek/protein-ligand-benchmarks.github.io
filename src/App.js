@@ -171,7 +171,7 @@ export default function App() {
   
 
   return (
-    <div classname="App">
+    <div className="App">
       <h1 className="header1"><strong >Comparing Different Energy Calculators</strong> <br/> <strong>By: </strong>
       </h1>
 
@@ -196,7 +196,7 @@ export default function App() {
 
 
         <div className="BP1">
-          <div elementclassName="Inner-Text">
+          <div className="Inner-Text">
             Welcome: {" "}
           </div>
           <br />
