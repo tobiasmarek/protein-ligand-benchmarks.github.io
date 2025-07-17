@@ -171,7 +171,7 @@ export default function App() {
   
 
   return (
-    <div className="App">
+    <div classname="App">
       <h1 className="header1"><strong >Comparing Different Energy Calculators</strong> <br/> <strong>By: </strong>
       </h1>
 
