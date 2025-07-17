@@ -1,7 +1,5 @@
 import json
-import pandas as pd
 from method_results import MethodAcuracy
-import os
 
 
 data = MethodAcuracy.giveData()  
