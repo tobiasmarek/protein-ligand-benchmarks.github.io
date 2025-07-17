@@ -41,6 +41,7 @@ jobs:
         pip install pandas
         pip install torch
         pip install ase
+        pip install torchani
     
     - run: npm run generate:data
     - run: npm ci
