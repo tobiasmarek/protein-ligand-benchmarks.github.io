@@ -1,8 +1,6 @@
 import method_results.TorchaniCalc.DockedCalc.DockedTester as Docked
-import numpy
 import os
 import pandas as pd
-import json
 
 
 def shorten(x):
