@@ -47,6 +47,7 @@
     "torchlogo": "Screenshot 2025-06-27 at 11.13.10 AM.png"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "jest-canvas-mock": "^2.5.2"
   }
 }
