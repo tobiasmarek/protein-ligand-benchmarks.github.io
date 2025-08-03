@@ -1,4 +1,4 @@
-import method_results.TorchaniCalc.DockedCalc.DockedTester as Docked
+import method_results.TorchaniCalc.DockedCalc.AniTester as Docked
 import os
 import pandas as pd
 

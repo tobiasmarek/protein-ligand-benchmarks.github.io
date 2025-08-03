@@ -14,8 +14,7 @@ from torchani.units import ev2kcalmol
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')   
 
 
-#creates the model used, specifyign periodic table indecies
-model = torchani.models.ANI2x(periodic_table_index=True).to(device)
+#creates the calculator used, specifyign periodic table indecies
 
 calculator = torchani.models.ANI2x().ase()
 Atoms.set_calculator(calculator)

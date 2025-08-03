@@ -230,6 +230,4 @@ export default function App() {
 }
 
 
-//TO DO: 
-//
-//move the model animations above the text
+

@@ -2,13 +2,15 @@ import numpy as np
 import pandas as pd
 import os
 import json
-from method_results import TorchAniCalc
+from method_results import EnergyCalc
 
 def giveData():
 
     
-    aniCalc = TorchAniCalc.giveEnergy()
+    aniCalc = EnergyCalc.giveEnergy()
 
+    #This dataframe contians the confirmed interaction energies for complexes
+    #This is used to calculate the error in the calculators
     df2 = pd.DataFrame({"IntE": [-242.583, -247.699, -88.726, -199.162, -157.143, -238.717, -94.099, -178.476, -92.145, 
                                 -231.047, -66.594, -77.382, -244.475, -127.532, -190.367  
     ]})
