@@ -197,6 +197,7 @@ export default function App() {
 
         <div className="BP1">
           <div className="Inner-Text">
+            <Video/>
             Welcome: {" "}
           </div>
           <br />
@@ -214,7 +215,6 @@ export default function App() {
           which was then converted into Kcal/Mol and was then converteted into a percentage error. 
            <br />
           Thanks for visiting!
-          <Video/>
         </div>
       </div>
 
