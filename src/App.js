@@ -175,7 +175,7 @@ export default function App() {
         <div className="header-text">
         <strong >Comparing Different Energy Calculators</strong>
         </div>
-        <a className="logo" href="https://github.com/protein-ligand-benchmarks/protein-ligand-benchmarks.github.io" target="_blank" rel="noreferrer">
+        <a className="logo"  target="_blank" rel="noreferrer">
           <img style ={{width: "75px", height: "75px"}} src={logo} alt="GitHub Logo"></img>
           </a>
       </h1>
