@@ -50,7 +50,6 @@ if (sortOn !== null || sortOn !== holder){
           {columns.map((col) => (
             <td className = "cell" key={col}>
               { 
-              
               ((col === "code" || col === "references") && Array.isArray(row[col]))? 
                 row[col].map((url, idx) => (
                   <a key = {idx} href={url} target="_blank" rel="noreferrer">Link</a>
