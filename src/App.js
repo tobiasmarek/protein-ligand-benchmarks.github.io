@@ -7,6 +7,7 @@ import { BarChart } from "./components/BarChart.js";
 import "./App.css";
 import Video from "./components/Video.js";
 import Table from "./components/Table.js";
+import logo from "./github-mark.png";
 
 
 Chart.register(CategoryScale);
@@ -30,7 +31,6 @@ export default function App() {
   
 
 
-  var [sortOn, setsortOn] = useState("accuracy");
   const columns = ["name", "category", "description", "references", "code", "accuracy", ""];
 
   var [chartData, setChartData] = useState({
@@ -88,7 +88,6 @@ export default function App() {
 
   //state for animaiton (false is off and true is on) True origionally to show the element
   function handleTable(value){
-    setsortOn(value);
     setIsAnimating(false);
     setTimeout(() => setIsAnimating(true), 10);
   }
@@ -172,7 +171,13 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1 className="header1"><strong >Comparing Different Energy Calculators</strong> <br/> <strong>By: </strong>
+      <h1 className="header1">
+        <div className="header-text">
+        <strong >Comparing Different Energy Calculators</strong>
+        </div>
+        <a className="logo" href="https://github.com/protein-ligand-benchmarks/protein-ligand-benchmarks.github.io" target="_blank" rel="noreferrer">
+          <img style ={{width: "75px", height: "75px"}} src={logo} alt="GitHub Logo"></img>
+          </a>
       </h1>
 
       <div className="contain1">
@@ -184,15 +189,15 @@ export default function App() {
           <button className="buttonUnit" onClick={()=>buttonHandler2()}>Switch to Kcal/Mol</button>
           </div>
           <div className="Table">
-          <div className={`box ${isAnimating ? "animate" : ""}`}>
-            <Table className="Tablemain" columns={columns} modelData={backendData} sortOn = {sortOn}/>
+          <div className="edges">
+          <div className={`box ${isAnimating ? "animate" : ""}`} >
+            <Table className="Tablemain" columns={columns} modelData={backendData} func= {() => handleTable()} />
           </div>
-          <div>
-          <button className="buttonTable" onClick={() => handleTable("category")}>category</button>
-          <button className="buttonTable2" onClick={() => handleTable("accuracy")}>accuracy</button>
           </div>
+          <div style ={{color:"white"}}> <br/> *Please select either accuracy or category to sort by.*</div>
           </div>
         </div>
+
 
 
         <div className="BP1">

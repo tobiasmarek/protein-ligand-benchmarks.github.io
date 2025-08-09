@@ -3,7 +3,7 @@ import { Bar } from "react-chartjs-2";
 export const BarChart = ({ chartData, options }) => {
 
   return (
-    <div className="chart-container">
+    <div className="chart-container" style={{opacity: "100%", background:"white"}}>
       <h2 style={{ textAlign: "center"}}>Bar Chart</h2>
       <Bar
         data={chartData}

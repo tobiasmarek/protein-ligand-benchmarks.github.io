@@ -1,11 +1,13 @@
 import './Table.css';
 import React from 'react';
+import { useState } from 'react';
 
 
 
-export default function Table({columns, modelData, sortOn}){
+export default function Table({columns, modelData, func}){
 
 let rawData = [...modelData]; //This makes a copy of modelData, if you had done rawData=modelaData it would have altered model Data whenever you change rawData
+var [sortOn, setsortOn] = useState();
 var holder = null;
   
 if (sortOn !== null || sortOn !== holder){
@@ -23,14 +25,23 @@ if (sortOn !== null || sortOn !== holder){
   
 
   return (
-        <table className="table" style={{borderRadius:"5px", border:"10px solid black", boxShadow:"2 5px 6px rgba(0, 0, 0, 0.1)"}}>
+        <table className="table" >
     <thead className ="header">
       <tr>
-        {columns.map((col) => (
+        {columns.map((col) => { if (col === "accuracy" || col === "category"){ return(
           <th key={col}>
+            <button onClick = {() => {func(col); setsortOn(col)}} className="sort-button">
             {col}
+            </button>
+          </th>)
+        }else{
+          return (
+            <th key={col}>
+              {col}
             </th>
-        ))}
+          )
+        }
+      })}
       </tr>
     </thead>
     <tbody >

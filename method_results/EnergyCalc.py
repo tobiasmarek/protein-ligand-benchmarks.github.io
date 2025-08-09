@@ -64,7 +64,7 @@ PE = sortIt(getEnergy('method_results/TorchaniCalc/datasets/PLA15/P'))
 
 #print(PLE)
 
-
+#Takes energy of proteia and ligand and sabrtracts them from the energy of the total complex (Finds interaction energy)
 EnergyList = []
 for i in range (0,15): EnergyList.append(PLE['EnergyCalculated'].iloc[i]-LE['EnergyCalculated'].iloc[i]-PE['EnergyCalculated'].iloc[i])
 

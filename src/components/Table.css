@@ -1,16 +1,39 @@
 .table {
     width: 100%;
-    border: 5px solid #000000;
+    border-radius: 5px;
+    border-collapse: collapse;
+    box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   .header {
     background-color: #38f6f2;
     font-weight: bold;
-    border: 2px solid black;
   }
-  
-  .cell {
-    border-top: 3px solid black;
-    margin: 1px;
-    padding: 1px;
-  } 
+
+  .header th:nth-child(3) {
+    border-style: none;
+    border-width: 1px;
+  }
+
+  .sort-button {
+    border: none;
+    border-bottom: solid 3px black;
+    border-radius: 5px 5px;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .table tbody tr:nth-child(even) {
+
+  background-color: #cdcdcd; 
+}
+
+.table tbody tr:nth-child(odd) {
+
+  background-color: #ffffff; 
+}
+
+.cell {
+    padding: 2px;
+  }
