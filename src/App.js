@@ -7,7 +7,7 @@ import { BarChart } from "./components/BarChart.js";
 import "./App.css";
 import Video from "./components/Video.js";
 import Table from "./components/Table.js";
-import logo from "./github-mark.png";
+//import logo from "./github-mark.png";
 
 
 Chart.register(CategoryScale);
@@ -175,9 +175,9 @@ export default function App() {
         <div className="header-text">
         <strong >Comparing Different Energy Calculators</strong>
         </div>
-        <a className="logo"  target="_blank" rel="noreferrer">
+        {/* <a className="logo"  target="_blank" rel="noreferrer">
           <img style ={{width: "75px", height: "75px"}} src={logo} alt="GitHub Logo"></img>
-          </a>
+          </a> */}
       </h1>
 
       <div className="contain1">
