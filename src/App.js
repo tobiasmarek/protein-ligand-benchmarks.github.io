@@ -31,7 +31,7 @@ export default function App() {
   
 
 
-  const columns = ["name", "category", "description", "references", "code", "accuracy", "rawError"];
+  const columns = ["name", "category", "description", "references", "code", "accuracy"];
 
   var [chartData, setChartData] = useState({
     labels: backendData.map((data) => data.name),
