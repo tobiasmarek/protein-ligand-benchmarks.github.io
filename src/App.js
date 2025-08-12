@@ -17,7 +17,7 @@ export default function App() {
   const[backendData, setbackendData] = useState([]);
 
   useEffect(() => {
-    fetch('/data.json?v='+Date.now(),{
+    fetch('/data.json?v=' + Date.now(),{
       headers : { 
         'Accept': 'application/json'
        }
