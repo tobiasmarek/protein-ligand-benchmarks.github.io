@@ -46,8 +46,8 @@ jobs:
         pip install ase
         pip install torchani
     
-    - run: npm ci
     - run: npm run generate:data
+    - run: npm ci
     - run: npm run build 
     - run: npm test
    
@@ -55,6 +55,6 @@ jobs:
     - name: Deploy with gh-pages
       run: |
        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-       npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>" 
+       npx gh-pages -d build -b github-pages -u "github-actions-bot <support+actions@github.com>" 
       env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
