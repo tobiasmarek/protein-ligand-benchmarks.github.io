@@ -47,7 +47,6 @@ jobs:
         pip install torchani
     
     - run: npm ci
-    - run: npm run no:data
     - run: npm run generate:data
     - run: npm run build 
     - run: npm test
