@@ -52,7 +52,6 @@ jobs:
     - run: cat public/data.json
     - run: npm run build 
     - run: npm test
-    - run: cat build/data.json
 
     - name: Deploy with gh-pages
       run: |
