@@ -46,9 +46,8 @@ jobs:
         pip install ase
         pip install torchani
     
-
-    - run: npm ci
     - run: npm run generate:data
+    - run: npm ci
     - run: cat public/data.json
     - run: npm run build 
     - run: npm test
