@@ -47,8 +47,8 @@ jobs:
         pip install torchani
         pip install torch
     
-    - run: npm run generate:data
     - run: npm ci
+    - run: npm run generate:data
     - run: cat public/data.json
     - run: npm run build 
     - run: npm test
