@@ -48,6 +48,7 @@ jobs:
     
 
     - run: npm ci
+    - run: npm run generate:data
     - run: npm run build 
     - run: cp public/data.json build/data.json
     - run: npm test
