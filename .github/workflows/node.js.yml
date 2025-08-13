@@ -46,7 +46,7 @@ jobs:
         pip install ase
         pip install torchani
     
-    
+    - run: npm run generate:data
     - run: npm ci
     - run: npm run build 
     - run: cp public/data.json build/data.json
