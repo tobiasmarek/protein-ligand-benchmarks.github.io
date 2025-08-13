@@ -49,7 +49,7 @@ jobs:
 
     - run: npm ci
     - run: npm run generate:data
-    - run: cat build/data.json
+    - run: cat public/data.json
     - run: npm run build 
     - run: npm test
     - run: cat build/data.json
