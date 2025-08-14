@@ -1,39 +1,77 @@
 .table {
-    width: 100%;
-    border-radius: 5px;
-    border-collapse: collapse;
-    box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.1);
-  }
+  width: 100%;
+  height:80%;
+  border-radius: 8px;
+  border-collapse: collapse;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  overflow: hidden;
+  opacity: 1;
+}
 
-  .header {
-    background-color: #38f6f2;
-    font-weight: bold;
-  }
+.header {
+  opacity: 1;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #93c5fd 100%);
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
 
-  .header th:nth-child(3) {
-    border-style: none;
-    border-width: 1px;
-  }
+.header th {
+  padding: 10px 8px;
+  position: relative;
+}
 
-  .sort-button {
-    border: none;
-    border-bottom: solid 3px black;
-    border-radius: 5px 5px;
-    background-color: transparent;
-    cursor: pointer;
-    font-weight: bold;
-  }
+.header th:nth-child(3) {
+  border-style: none;
+  border-width: 1px;
+}
 
-  .table tbody tr:nth-child(even) {
+.sort-button {
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px); /*Potential compatibility issue here*/
+  cursor: pointer;
+  font-weight: 700;
+  color: white;
+  padding: 6px 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-  background-color: #cdcdcd; 
+.sort-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sort-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8fafc;
 }
 
 .table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
 
-  background-color: #ffffff; 
+.table tbody tr:hover {
+  background-color: #e2e8f0;
+  transition: background-color 0.2s ease;
 }
 
 .cell {
-    padding: 2px;
-  }
+  padding: 10px;
+  font-weight: 500;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table tbody tr:last-child .cell {
+  border-bottom: none;
+}

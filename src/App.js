@@ -7,7 +7,7 @@ import { BarChart } from "./components/BarChart.js";
 import "./App.css";
 import Video from "./components/Video.js";
 import Table from "./components/Table.js";
-//import logo from "./github-mark.png";
+import logo from "./github-mark.png";
 
 
 Chart.register(CategoryScale);
@@ -41,13 +41,12 @@ export default function App() {
         data: backendData.map((data) => data.accuracy ),
         backgroundColor: [
           "rgba(75,192,192,1)",
-          "#ecf0f1",
+          "rgb(245, 175, 226)",
           "#50AF95",
           "#f3ba2f",
           "#2a71d0",
         ],
-        borderColor: "black",
-        borderWidth: 2,
+        
       },
     ],
   });
@@ -61,13 +60,12 @@ export default function App() {
           data: backendData.map((data) => data.accuracy),
           backgroundColor: [
             "rgba(75,192,192,1)",
-            "#ecf0f1",
+            "rgb(245, 175, 226)",
             "#50AF95",
             "#f3ba2f",
             "#2a71d0",
           ],
-          borderColor: "black",
-          borderWidth: 2,
+          
         },
       ],
     });
@@ -107,13 +105,12 @@ export default function App() {
             data: backendData.map((data) => data.rawError),
             backgroundColor: [
               "rgba(75,192,192,1)",
-              "#ecf0f1",
+              "rgb(245, 175, 226)",
               "#50AF95",
               "#f3ba2f",
               "#2a71d0",
             ],
-            borderColor: "black",
-            borderWidth: 2,
+            
           },
         ],
       });
@@ -143,13 +140,12 @@ export default function App() {
             data: backendData.map((data) => data.accuracy),
             backgroundColor: [
               "rgba(75,192,192,1)",
-              "#ecf0f1",
+              "rgb(245, 175, 226)",
               "#50AF95",
               "#f3ba2f",
               "#2a71d0",
             ],
-            borderColor: "black",
-            borderWidth: 2,
+            
           },
         ],
       });
@@ -175,9 +171,9 @@ export default function App() {
         <div className="header-text">
         <strong >Comparing Different Energy Calculators</strong>
         </div>
-        {/* <a className="logo"  target="_blank" rel="noreferrer">
+        <a className="logo" href="https://github.com/protein-ligand-benchmarks/protein-ligand-benchmarks.github.io" target="_blank" rel="noreferrer">
           <img style ={{width: "75px", height: "75px"}} src={logo} alt="GitHub Logo"></img>
-          </a> */}
+          </a>
       </h1>
 
       <div className="contain1">
@@ -189,12 +185,13 @@ export default function App() {
           <button className="buttonUnit" onClick={()=>buttonHandler2()}>Switch to Kcal/Mol</button>
           </div>
           <div className="Table">
+            <div style ={{color:"white"}}> <br/> *Please select either accuracy or category to sort by.*</div>
+            <br/>
           <div className="edges">
           <div className={`box ${isAnimating ? "animate" : ""}`} >
             <Table className="Tablemain" columns={columns} modelData={backendData} func= {() => handleTable()} />
           </div>
           </div>
-          <div style ={{color:"white"}}> <br/> *Please select either accuracy or category to sort by.*</div>
           </div>
         </div>
 

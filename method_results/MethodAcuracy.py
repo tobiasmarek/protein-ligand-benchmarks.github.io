@@ -60,7 +60,7 @@ def giveData():
                     avg_InteractionE += np.abs(df2["IntE"].iloc[i])
                 avg_InteractionE /= 15
                 avg_ErrorPer = (avg_InteractionE-avg_error)/avg_InteractionE
-                temp = (currName, avg_ErrorPer*100)
+                temp = (currName, 100 - avg_ErrorPer*100)
                 PercentErrors.append(temp) #For the future when making the accuracy the amoung its incorrect do 100-temp
 
             if filename.endswith(".json"):
@@ -96,7 +96,7 @@ def giveData():
         avg_error1 += np.abs(aniCalc[i] - df2["IntE"].iloc[i])
     avg_InteractionE1 /= 15
     avg_Eunits = avg_error1/15
-    avg_Epercent = ((avg_InteractionE1-avg_Eunits)/avg_InteractionE1)*100
+    avg_Epercent = 100 - ((avg_InteractionE1-avg_Eunits)/avg_InteractionE1)*100
     
     newdict = {"name": "ANI2x", "category":"SQM", "description":"Under progress", "references":"", "code":""}
     newdict["accuracy"] = avg_Epercent
