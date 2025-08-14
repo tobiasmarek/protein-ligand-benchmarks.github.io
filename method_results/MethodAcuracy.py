@@ -52,8 +52,7 @@ def giveData():
                 avg_error = avg_error/15
                 temptup = (currName, avg_error)
                 Errors.append(temptup)
-                print("Errors: " + str(Errors))
-
+                
                 avg_InteractionE =0 
                 for i in range(0,15): #calculates error in percent
                     avg_InteractionE += np.abs(df2["IntE"].iloc[i])
@@ -61,13 +60,14 @@ def giveData():
                 avg_ErrorPer = (avg_InteractionE-avg_error)/avg_InteractionE
                 temp = (currName, avg_ErrorPer*100)
                 PercentErrors.append(temp) #For the future when making the accuracy the amoung its incorrect do 100-temp
-                print("Percent Errors" + str(PercentErrors))
+                
 
             elif filename.endswith(".json"):
                 with open(filename, 'r') as j:
                     obj = json.load(j)
                     dict ={}
                     for key, value in obj.items():
+                        print(f"key: {key}, value: {value}")
                         
                         if key == "name":
                             mName = value
