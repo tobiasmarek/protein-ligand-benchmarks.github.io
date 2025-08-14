@@ -62,7 +62,6 @@ def giveData():
                 avg_ErrorPer = (avg_InteractionE-avg_error)/avg_InteractionE
                 temp = (currName, avg_ErrorPer*100)
                 PercentErrors.append(temp) #For the future when making the accuracy the amoung its incorrect do 100-temp
-               
 
             if filename.endswith(".json"):
                 print("JSON File: " + filename)
@@ -73,16 +72,19 @@ def giveData():
                         if key == "name":
                             mName = value
                         dict[key]= value
-
+        
         for T in PercentErrors:
             if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
                 dict["accuracy"]= T[1]
-                print("Accuracy: " + str(T[1]))
         for T in Errors:
             if (T[0] == mName):
                 dict["rawError"] = T[1]
-                print("Raw Error: " + str(T[1]))
         wholeData.append(dict)
+        print("Whole Data: " + str(wholeData))
+        PercentErrors.clear()
+        Errors.clear()
+        
+        
                     
     
 
