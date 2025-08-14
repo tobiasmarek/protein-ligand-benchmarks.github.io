@@ -38,6 +38,7 @@ def giveData():
             currName = obj.get("name")
         for file in os.scandir(fullfolder):
             filename = os.fsdecode(file)
+            print(filename)
             if filename.endswith(".txt"):    
                 print("File: " + filename)                 
                 name = os.path.join(directory, file)
@@ -63,7 +64,7 @@ def giveData():
                 PercentErrors.append(temp) #For the future when making the accuracy the amoung its incorrect do 100-temp
                
 
-            elif filename.endswith(".json"):
+            if filename.endswith(".json"):
                 print("JSON File: " + filename)
                 with open(filename, 'r') as j:
                     obj = json.load(j)
