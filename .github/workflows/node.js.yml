@@ -41,12 +41,12 @@ jobs:
       run: |
         set -e
         python -m pip install --upgrade pip
-        pip install numpy
-        pip install pandas
-        pip install torch
-        pip install ase
-        pip install torchani
-        pip install torch
+        pip install -v numpy
+        pip install -v pandas
+        pip install -v torch
+        pip install -v ase
+        pip install -v torchani
+        pip install -v torch
     
     - run: npm ci
     - run: python Backend.py

@@ -16,9 +16,8 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 #creates the calculator used, specifyign periodic table indecies
 
-calculator = torchani.models.ANI2x().ase()
-Atoms.set_calculator(calculator)
-
+calc = torchani.models.ANI2x().ase()
+atoms.calc = calc
 
 
 def runCalc(web, charge):
@@ -27,7 +26,7 @@ def runCalc(web, charge):
 
     data.charge = charge #sets the charge
 
-    data.calc = calculator #applys the calculator 
+    data.calc = calc #applys the calculator 
 
 
     en = data.get_potential_energy()  # This call will start the calculation
