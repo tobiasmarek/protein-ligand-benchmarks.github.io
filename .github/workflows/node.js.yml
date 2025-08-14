@@ -51,6 +51,7 @@ jobs:
     - run: python Backend.py
     - run: cat public/data.json
     - run: npm run build 
+    - run: cat build/data.json
     - run: npm test
 
     - name: Deploy with gh-pages
