@@ -42,8 +42,9 @@ def giveData():
                 name = os.path.join(directory, file)
                 mName = filename[40:-10]
                     
-                df = pd.read_csv(filename, sep='                    ', header=0, index_col=[0])
+                df = pd.read_csv(filename, sep='\s+', header=None, index_col=[0], engine="python", skiprows=1)
                 df.columns=['Calculations']
+                #print(f"table:\n{str(df)}")
                 
                 avg_error= 0
                 for i in range(0,15): #calculates error in Kcal/Mol
