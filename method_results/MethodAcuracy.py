@@ -52,6 +52,7 @@ def giveData():
                 avg_error = avg_error/15
                 temptup = (currName, avg_error)
                 Errors.append(temptup)
+                print("Errors: " + str(Errors))
 
                 avg_InteractionE =0 
                 for i in range(0,15): #calculates error in percent
@@ -60,7 +61,8 @@ def giveData():
                 avg_ErrorPer = (avg_InteractionE-avg_error)/avg_InteractionE
                 temp = (currName, avg_ErrorPer*100)
                 PercentErrors.append(temp) #For the future when making the accuracy the amoung its incorrect do 100-temp
-            
+                print("Percent Errors" + str(PercentErrors))
+
             elif filename.endswith(".json"):
                 with open(filename, 'r') as j:
                     obj = json.load(j)
@@ -73,11 +75,13 @@ def giveData():
                     for T in PercentErrors:
                         if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
                             dict["accuracy"]= T[1]
+                            print("Accuracy: " + str(T[1]))
                     for T in Errors:
                         if (T[0] == mName):
                             dict["rawError"] = T[1]
+                            print("Raw Error: " + str(T[1]))
                     wholeData.append(dict)
-                    print(dict)
+                    
     
 
     #Adding the TorchAni calculator:
