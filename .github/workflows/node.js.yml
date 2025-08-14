@@ -34,7 +34,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'  # or whatever version you need
+        python-version: '3.9'  # or whatever version you need
 
       # Install Python dependencies
     - name: Install Python packages
@@ -48,8 +48,8 @@ jobs:
         pip install -v torchani
         pip install -v torch
     
-    - run: npm ci
     - run: python Backend.py
+    - run: npm ci
     - run: cat public/data.json
     - run: npm run build --if-present
     - run: cat build/data.json
