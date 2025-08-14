@@ -71,6 +71,7 @@ def giveData():
                         
                         if key == "name":
                             mName = value
+                            print("Name: " + mName)
                         dict[key]= value
                     for T in PercentErrors:
                         if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
