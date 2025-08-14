@@ -38,7 +38,8 @@ def giveData():
             currName = obj.get("name")
         for file in os.scandir(fullfolder):
             filename = os.fsdecode(file)
-            if filename.endswith(".txt"):                     
+            if filename.endswith(".txt"):    
+                print("File: " + filename)                 
                 name = os.path.join(directory, file)
                     
                 df = pd.read_csv(filename, sep='\s+', header=None, index_col=[0], engine="python", skiprows=1)
@@ -60,20 +61,19 @@ def giveData():
                 avg_ErrorPer = (avg_InteractionE-avg_error)/avg_InteractionE
                 temp = (currName, avg_ErrorPer*100)
                 PercentErrors.append(temp) #For the future when making the accuracy the amoung its incorrect do 100-temp
-                print("PE" + str(PercentErrors))
+               
 
             elif filename.endswith(".json"):
+                print("JSON File: " + filename)
                 with open(filename, 'r') as j:
                     obj = json.load(j)
                     dict ={}
                     for key, value in obj.items():
                         if key == "name":
                             mName = value
-                            print("Name: " + mName)
                         dict[key]= value
 
                     for T in PercentErrors:
-                        print("T: " + str(T))
                         if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
                             dict["accuracy"]= T[1]
                             print("Accuracy: " + str(T[1]))
