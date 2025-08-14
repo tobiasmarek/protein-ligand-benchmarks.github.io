@@ -67,11 +67,13 @@ def giveData():
                     obj = json.load(j)
                     dict ={}
                     for key, value in obj.items():
-                       if key == "name":
-                           mName = value
-                           print("Name: " + mName)
-                       dict[key]= value
+                        if key == "name":
+                            mName = value
+                            print("Name: " + mName)
+                        dict[key]= value
+
                     for T in PercentErrors:
+                        print("T: " + str(T))
                         if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
                             dict["accuracy"]= T[1]
                             print("Accuracy: " + str(T[1]))
