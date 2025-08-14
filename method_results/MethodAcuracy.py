@@ -74,15 +74,15 @@ def giveData():
                             mName = value
                         dict[key]= value
 
-                    for T in PercentErrors:
-                        if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
-                            dict["accuracy"]= T[1]
-                            print("Accuracy: " + str(T[1]))
-                    for T in Errors:
-                        if (T[0] == mName):
-                            dict["rawError"] = T[1]
-                            print("Raw Error: " + str(T[1]))
-                    wholeData.append(dict)
+        for T in PercentErrors:
+            if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
+                dict["accuracy"]= T[1]
+                print("Accuracy: " + str(T[1]))
+        for T in Errors:
+            if (T[0] == mName):
+                dict["rawError"] = T[1]
+                print("Raw Error: " + str(T[1]))
+        wholeData.append(dict)
                     
     
 
