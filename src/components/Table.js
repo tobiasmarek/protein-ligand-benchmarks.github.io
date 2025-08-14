@@ -53,7 +53,9 @@ if (sortOn !== null || sortOn !== holder){
               ((col === "code" || col === "references") && Array.isArray(row[col]))? 
                 row[col].map((url, idx) => (
                   <a key = {idx} href={url} target="_blank" rel="noreferrer">Link</a>
-                )) : typeof row[col] === "object" && row[col] !== null? (JSON.stringify(row[col])):(
+                )) 
+                : (col === "accuracy") ? (row[col].toFixed(2) +"%")
+                : (typeof row[col] === "object" && row[col] !== null)? (JSON.stringify(row[col])):(
                 row[col])
               }
             </td>

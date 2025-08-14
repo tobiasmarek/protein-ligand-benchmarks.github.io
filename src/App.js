@@ -37,8 +37,8 @@ export default function App() {
     labels: backendData.map((data) => data.name),
     datasets: [
       {
-        label: "Percent Accuracy ",
-        data: backendData.map((data) => data.accuracy ),
+        label: "Percent Error",
+        data: backendData.map((data) => (100-data.accuracy) ),
         backgroundColor: [
           "rgba(75,192,192,1)",
           "rgb(245, 175, 226)",
@@ -56,8 +56,8 @@ export default function App() {
       labels: backendData.map((data) => data.name),
       datasets: [
         {
-          label: "Percent Accuracy ",
-          data: backendData.map((data) => data.accuracy),
+          label: "Percent Error ",
+          data: backendData.map((data) => (100-data.accuracy)),
           backgroundColor: [
             "rgba(75,192,192,1)",
             "rgb(245, 175, 226)",
@@ -95,7 +95,7 @@ export default function App() {
     // the values under the "data" label are equal to the first values of Data.userGain, which
     //essentialy just compares if the data displayed(chartData) is equal to the first data file (Data).
     if (
-      chartData.datasets[0].data[0] === backendData.map((data) => data.accuracy)[0]
+      chartData.datasets[0].data[0] === backendData.map((data) => 100-data.accuracy)[0]
       ) {
       setChartData({
         labels: backendData.map((data) => data.name),
@@ -136,8 +136,8 @@ export default function App() {
         labels: backendData.map((data) => data.name),
         datasets: [
           {
-            label: "Percent Accuracy ",
-            data: backendData.map((data) => data.accuracy),
+            label: "Percent Error ",
+            data: backendData.map((data) => (100-data.accuracy)),
             backgroundColor: [
               "rgba(75,192,192,1)",
               "rgb(245, 175, 226)",
