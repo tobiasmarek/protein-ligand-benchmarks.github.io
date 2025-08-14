@@ -40,7 +40,6 @@ def giveData():
             filename = os.fsdecode(file)
             if filename.endswith(".txt"):                     
                 name = os.path.join(directory, file)
-                mName = filename[40:-10]
                     
                 df = pd.read_csv(filename, sep='\s+', header=None, index_col=[0], engine="python", skiprows=1)
                 #from IPython import embed; embed()
@@ -72,12 +71,13 @@ def giveData():
                             mName = value
                         dict[key]= value
                     for T in PercentErrors:
-                        if (T[0] == mName):
+                        if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
                             dict["accuracy"]= T[1]
                     for T in Errors:
                         if (T[0] == mName):
                             dict["rawError"] = T[1]
                     wholeData.append(dict)
+                    print(dict)
     
 
     #Adding the TorchAni calculator:
@@ -98,4 +98,3 @@ def giveData():
     wholeData.append(newdict)
     return(wholeData)
 
-giveData()
