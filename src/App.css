@@ -1,9 +1,15 @@
+body html {
+  font-family: "Droid sans", "Arial", sans-serif;
+  font-size: 16px;
+}
+
 .App {
   display:flexbox;
   text-align: center;
   color: black;
   background-color: #f0f0f0;
   font-family: "Droid sans", "Arial", sans-serif;
+  font-size: 16px;
   padding: 0px;
   height: 100%;
   width: 100%;
