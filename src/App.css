@@ -1,63 +1,53 @@
 .App {
   display:flexbox;
   text-align: center;
-  background-blend-mode: color;
-  color: rgb(0, 0, 0);
-  font-family: "Arial", sans-serif;
+  color: black;
+  background-color: #f0f0f0;
+  font-family: "Droid sans", "Arial", sans-serif;
   padding: 0px;
   height: 100%;
   width: 100%;
-  background-attachment:fixed;
-
   position: relative;
   overflow-x: hidden;
-  background: 
-    
-    linear-gradient(135deg,black,  #1e3a8a 10%, #3b82f6 30%, #93c5fd 80%, black);
 }
 
 .App::before {
   content: "";
   position: absolute;
   inset: 0;
-  
   pointer-events: none;
-  
-  background-blend-mode: lighten, lighten, screen;
-  opacity: 0.8;
 }
 
 
 .header1 {
   display: inline-flex;
-  border-bottom: solid 10px black;
-  border-radius: 10px;
-  background-color:rgb(0, 69, 71);
-  opacity: 0.9;
+  /*border-bottom: solid 10px black;*/
+  /*border-radius: 10px;*/
+  /*background-color:rgb(0, 69, 71);*/
+  /*opacity: 0.9;*/
   margin: 0px;
   padding: 20px;
-  height: 10vh;
+  /*height: 10vh;*/
   width: 80%;
   overflow: hidden;
 }
 
 .header-text {
   font-size: 2.5rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "DroidSans", "Arial", sans-serif;
   font-weight: bold;
-  color: rgb(255, 255, 255);
   text-align: center;
   width: 80%;
   display: inline-block;
   margin: 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);*/
 }
 
 
 
 .logo{
-  margin: 10px;
-  cursor: pointer;
+  /*margin: 10px;*/
+  /*cursor: pointer;*/
   display: inline-block;
 }
 
@@ -96,14 +86,12 @@
 }
 
 .chart-container {
-  opacity: 0.8;
+  background-color: white;
+  border-radius: 10px;
+  /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
   display:flexbox;
-  width: 70%;
+  width: 80%;
   margin: 20px auto; /* Center the chart horizontally */
-  border: 5px solid #000000; /* Add a border */
-  border-radius: 15px; /* Make the border rounded */
-  background-color: rgb(0, 0, 0); 
-  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better aesthetics */
 }
 
 .buttonContainer {
@@ -112,40 +100,16 @@
 }
 
 .buttonP {
-  opacity: 1;
-  box-shadow: 3px 6px 2px 2px rgba(30, 144, 180, 0.8);
-  margin: 10px;
-  background: linear-gradient(135deg, #61dafb 0%, #ffffff 100%);
-  border: #75bac4 2px solid;
-  padding: 10px 20px;
-  font-size: 12px;
-  border-radius: 100px 100px; 
-  cursor: pointer;
-}
-
-.buttonUnit {
-  opacity: 1;
-  box-shadow: 3px 6px 2px 2px rgba(30, 144, 180, 0.8);
-  margin: 10px;
-  background: linear-gradient(135deg, #61dafb 0%, #ffffff 100%);
-  border: #75bac4 2px solid;
-  padding: 10px 20px;
-  font-size: 12px;
-  border-radius: 100px 100px;
-  cursor: pointer;
- 
-}
-
-
-
-.buttonUnit:hover {
-  background: linear-gradient(135deg, #a8e7f7 0%, #ffffff 100%);
-  box-shadow: 4px 8px 2px 2px rgba(52, 148, 178, 1);
+  display: inline;
+  color: blue;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  font-size: 100%;
 }
 
 .buttonP:hover {
-  background: linear-gradient(135deg, #a8e7f7 0%, #ffffff 100%);
-  box-shadow: 4px 8px 2px rgb(52, 148, 178);
+  text-decoration: underline;
 }
 
 .Table {
@@ -172,22 +136,19 @@
 }
 
 .BP1 {
-  opacity: 0.8;
   width:30%;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: white;
   padding: 50px;
-  border-radius: 8px;
+  border-radius: 10px;
   margin: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-size: 18px;
   text-align: center;
-  font-family: Courier;
 }
 
 .Inner-Text {
-  font-size: 30px;
-  font-family: Impact;
+  text-align: justify;
+  padding-bottom: 2em;
 }
 
 
@@ -229,11 +190,7 @@
 }
 
 .ending {
- border-top: 10px solid black;
  border-radius: 10px;
  margin: 10px;
  height: 100px;
- font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
- font-style:oblique;
- background-color: rgb(255, 255, 255);
 }

@@ -169,29 +169,30 @@ export default function App() {
     <div className="App">
       <h1 className="header1">
         <div className="header-text">
-        <strong >Comparing Different Energy Calculators</strong>
+          <strong >PLA15 Protein-ligand interaction energy benchmarks</strong>
         </div>
         <a className="logo" href="https://github.com/protein-ligand-benchmarks/protein-ligand-benchmarks.github.io" target="_blank" rel="noreferrer">
-          <img style ={{width: "75px", height: "75px"}} src={logo} alt="GitHub Logo"></img>
-          </a>
+          <img style={{ width: "60px", height: "60px" }} src={logo} alt="Source at GitHub"></img>
+        </a>
       </h1>
 
       <div className="contain1">
 
         <div className="chart-container">
-          <BarChart className="chart1" chartData={chartData} options = {options} />
+          <BarChart className="chart1" chartData={chartData} options={options} />
           <div className="buttonContainer">
-          <button className="buttonP" onClick={() => buttonHandler()}>Switch to Percentage</button>
-          <button className="buttonUnit" onClick={()=>buttonHandler2()}>Switch to Kcal/Mol</button>
+	    The Mean Unsigned Error can be displayed as
+            <button className="buttonP" onClick={() => buttonHandler()}>percentage of the interaction energy</button> or in 
+            <button className="buttonP" onClick={() => buttonHandler2()}>kcal/mol</button>
           </div>
           <div className="Table">
-            <div style ={{color:"white"}}> <br/> *Please select either accuracy or category to sort by.*</div>
-            <br/>
-          <div className="edges">
-          <div className={`box ${isAnimating ? "animate" : ""}`} >
-            <Table className="Tablemain" columns={columns} modelData={backendData} func= {() => handleTable()} />
-          </div>
-          </div>
+            <div style={{ color: "white" }}> <br /> *Please select either accuracy or category to sort by.*</div>
+            <br />
+            <div >
+              <div className={`box ${isAnimating ? "animate" : ""}`} >
+                <Table className="Tablemain" columns={columns} modelData={backendData} func={() => handleTable()} />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -199,33 +200,28 @@ export default function App() {
 
         <div className="BP1">
           <div className="Inner-Text">
-            <Video/>
-            Welcome: {" "}
+            <p>
+              This website collects the results of approximate computational chemistry methods and machine learning potentials computed in the <a href="https://doi.org/10.1021/acs.jcim.9b01171">PLA15 benchmark data set</a>.
+            </p>
+            <p>
+              The PLA15 dataset features 15 models of protein-ligand complexes covering the interaction of the ligand with nearby amino acid residues. The systems range in size from 280 to 580 atoms. Reference interaction energies were obtained from fragment-based DLPNO-CCSD(T) calculations and represent the most accurate benchmark available for biomolecular systems of this size.
+            </p>
+            <p>
+              The error of the tested method is expressed as a mean unsigned error and listed in kcal/mol or in percent relative to the average magnitude of the reference interaction energy in the set. The methods are divided into three categories: semiempirical quantum-mechanical calculations (SQM), atomistic machine learning potentials (ML), and the hybrid methods combining both approaches (SQM+ML).
+            </p>
+            <p>
+              More results can be added via the <a href="https://github.com/protein-ligand-benchmarks/protein-ligand-benchmarks.github.io">GitHub repository</a>, which also provides the PLA15 structures and a sample code performing the calculations on them. Contributions of new data are welcome!
+            </p>
+            <Video />
           </div>
-          <br />
-          This graph highlights the accuracy of interactive energy
-          calculations made by an array of calculators that use machine learning(ML) 
-          and/or Semiempirical Quantum Mechanical(SQM) methods. The
-          button under the graph allow for toggleable units. In other words you can choose
-          to display the models accuracy in percentages, or you can choose to display the models 
-          average error in Kcal/Mol. The table below displays all of the calculators used, and 
-          where to find their code or references. The table sorts them based on their category, 
-          grouping the SQM models together, and the ML models seperately. The data on this graph 
-          was found by using the calculator to predict the interaction energy for different Protein 
-          and Ligand structures. Then we compared these interaction energies to the known energy of 
-          the system(which was calculated using cryo EM). This gave a raw error in electron Volts(eV)
-          which was then converted into Kcal/Mol and was then converteted into a percentage error. 
-           <br />
-          Thanks for visiting!
         </div>
       </div>
 
-      <div className="ending">
-        <p>
-          <strong>Thanks for visitng!</strong><br/>
-          - *Names*
-        </p>
-      </div>
+        <div className="ending">
+          <p>
+            Built by Daniel Konvicka during his internship in <a href="https://rezac.group.uochb.cz/en">Jan Řezáč group</a> at <a href="https://www.uochb.cz/en">IOCB Prague</a>
+          </p>
+        </div>
 
     </div>
   );
