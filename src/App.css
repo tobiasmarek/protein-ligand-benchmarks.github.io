@@ -91,11 +91,15 @@ body html {
   margin: 10px;
 }
 
+
+.chart1{
+  overflow:auto;
+}
+
 .chart-container {
   background-color: white;
   border-radius: 10px;
   /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-  display:flexbox;
   width: 80%;
   margin: 20px auto; /* Center the chart horizontally */
 }
@@ -125,7 +129,7 @@ body html {
   justify-content: center;
   align-items: center;
   width: 90%;
-  margin: 20px auto; 
+  margin: 50px auto; 
   padding: 10px;
   overflow: auto;
 } 
@@ -199,4 +203,26 @@ body html {
  border-radius: 10px;
  margin: 10px;
  height: 100px;
+}
+
+/* New classes */
+.chart-panel {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 20px auto;
+  opacity: 100%;
+}
+
+.gh-logo-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.table-note-text {
+  color: white;
 }

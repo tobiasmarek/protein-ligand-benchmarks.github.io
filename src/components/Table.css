@@ -67,8 +67,20 @@
   padding: 10px;
   font-weight: 500;
   border-bottom: 1px solid #e2e8f0;
+  text-align: left;
 }
 
+.highlight {
+  background-color: #ffcccc !important; 
+}
+
+.highlight2 {
+  background-color: #95f7fc !important; 
+}
+
+.highlight3 {
+  background-color: #8feabd !important; 
+}
 .table tbody tr:last-child .cell {
   border-bottom: none;
 }

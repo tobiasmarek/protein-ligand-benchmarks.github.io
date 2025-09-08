@@ -75,10 +75,10 @@ def giveData():
         
         for T in PercentErrors:
             if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
-                dict["accuracy"]= T[1]
+                dict["percentError"]= np.round(100-T[1], 3)
         for T in Errors:
             if (T[0] == mName):
-                dict["rawError"] = T[1]
+                dict["rawError"] = np.round(T[1], 3)
         wholeData.append(dict)
         #print("Whole Data: " + str(wholeData))
         PercentErrors.clear()
@@ -99,8 +99,8 @@ def giveData():
     avg_Epercent = ((avg_InteractionE1-avg_Eunits)/avg_InteractionE1)*100
     
     newdict = {"name": "ANI2x", "category":"SQM", "description":"Under progress", "references":"", "code":""}
-    newdict["accuracy"] = avg_Epercent
-    newdict["rawError"] = avg_Eunits
+    newdict["percentError"] = np.round(avg_Epercent, 3)
+    newdict["rawError"] = np.round(avg_Eunits, 3)
 
 
     wholeData.append(newdict)

@@ -8,6 +8,7 @@ import "./App.css";
 import Video from "./components/Video.js";
 import Table from "./components/Table.js";
 import logo from "./github-mark.png";
+import { useMemo } from "react";
 
 
 Chart.register(CategoryScale);
@@ -28,24 +29,28 @@ export default function App() {
     )
     .catch(error => console.error('Error loading JSON:', error));
   }, []);
+
+  const colors = useMemo(() => { //Saves the colors const to cache so it doesnt trigger use effect each time
+    return {
+      "SQM": "rgba(240, 130, 130, 1)",
+      "ML": "rgba(160, 221, 241, 1)",
+      "SQM+ML": "#86fab6ff",
+      "default": "#fdfeffff"
+    };
+  }, []);
   
 
-
-  const columns = ["name", "category", "description", "references", "code", "accuracy"];
+  const columns = ["name", "category", "description", "references", "code", "percentError", "rawError"];
 
   var [chartData, setChartData] = useState({
     labels: backendData.map((data) => data.name),
     datasets: [
       {
         label: "Percent Error",
-        data: backendData.map((data) => (100-data.accuracy) ),
-        backgroundColor: [
-          "rgba(75,192,192,1)",
-          "rgb(245, 175, 226)",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
-        ],
+        data: backendData.map((data) => (data.percentError) ),
+        backgroundColor: backendData.map((data) =>
+        colors[data.category] || colors.default
+      ),
         
       },
     ],
@@ -57,32 +62,55 @@ export default function App() {
       datasets: [
         {
           label: "Percent Error ",
-          data: backendData.map((data) => (100-data.accuracy)),
-          backgroundColor: [
-            "rgba(75,192,192,1)",
-            "rgb(245, 175, 226)",
-            "#50AF95",
-            "#f3ba2f",
-            "#2a71d0",
-          ],
+          data: backendData.map((data) => (data.percentError)),
+          backgroundColor: backendData.map((data) =>
+        colors[data.category] || colors.default
+      ),
           
         },
       ],
     });
-  }, [backendData]);
+  }, [backendData, colors]);
 
 
   const [isAnimating, setIsAnimating] = useState(true);
   var [options, setOptions] = useState({
-    responsive:true,
-    scales:{
-        y: {
-          ticks:{
-            callback: function(value) {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+            x: {
+                title: {
+                  font: {
+                size: 17 
+              },
+                display: true,
+                text: 'Method' // X-axis label
+                },
+                ticks: {
+                  font: {
+                    size: 15
+                  }
+                }
+            },
+            y: {
+              ticks:{
+              font: {
+                size: 15 
+              },
+              callback: function(value) {
               return value+"%";
           }
+        },
+              title: {
+                font: {
+                size: 17 
+              },
+              display: true,
+              text: 'Mean Unsigned Error, kcal/mol' // Y-axis label
+              }
+            }
         }
-      }}});
+      });
 
   //state for animaiton (false is off and true is on) True origionally to show the element
   function handleTable(value){
@@ -95,7 +123,7 @@ export default function App() {
     // the values under the "data" label are equal to the first values of Data.userGain, which
     //essentialy just compares if the data displayed(chartData) is equal to the first data file (Data).
     if (
-      chartData.datasets[0].data[0] === backendData.map((data) => 100-data.accuracy)[0]
+      chartData.datasets[0].data[0] === backendData.map((data) => data.percentError)[0]
       ) {
       setChartData({
         labels: backendData.map((data) => data.name),
@@ -117,14 +145,39 @@ export default function App() {
     console.log("chartData");
       setOptions({
         responsive:true,
-        scales:{
+        scales: {
+            x: {
+                title: {
+                  font: {
+                size: 17 
+              },
+                display: true,
+                text: 'Method' // X-axis label
+                },
+                ticks: {
+                  font: {
+                    size: 15
+                  }
+                }
+            },
             y: {
               ticks:{
-                callback: function(value) {
-                  return value+" Kcal/Mol";
+              font: {
+                size: 15 
+              },
+              callback: function(value) {
+              return value+"Kcal/Mol";
+          }
+        },
+              title: {
+                font: {
+                size: 17 
+              },
+              display: true,
+              text: 'Relative Error' // Y-axis label
               }
             }
-      }}});
+        }});
     }
   }
 
@@ -137,7 +190,7 @@ export default function App() {
         datasets: [
           {
             label: "Percent Error ",
-            data: backendData.map((data) => (100-data.accuracy)),
+            data: backendData.map((data) => (data.percentError)),
             backgroundColor: [
               "rgba(75,192,192,1)",
               "rgb(245, 175, 226)",
@@ -151,14 +204,39 @@ export default function App() {
       });
       setOptions({
     responsive:true,
-    scales:{
-        y: {
-          ticks:{
-            callback: function(value) {
+    scales: {
+            x: {
+                title: {
+                  font: {
+                size: 17 
+              },
+                display: true,
+                text: 'Method' // X-axis label
+                },
+                ticks: {
+                  font: {
+                    size: 15
+                  }
+                }
+            },
+            y: {
+              ticks:{
+              font: {
+                size: 15 
+              },
+              callback: function(value) {
               return value+"%";
           }
-        }
-      }}});
+        },
+              title: {
+                font: {
+                size: 17 
+              },
+              display: true,
+              text: 'Mean Unsigned Error, kcal/mol' // Y-axis label
+              }
+            }
+        }});
     }
   }
 
@@ -172,21 +250,23 @@ export default function App() {
           <strong >PLA15 Protein-ligand interaction energy benchmarks</strong>
         </div>
         <a className="logo" href="https://github.com/protein-ligand-benchmarks/protein-ligand-benchmarks.github.io" target="_blank" rel="noreferrer">
-          <img style={{ width: "60px", height: "60px" }} src={logo} alt="Source at GitHub"></img>
+          <img className="gh-logo-icon" src={logo} alt="Source at GitHub" />
         </a>
       </h1>
 
       <div className="contain1">
 
         <div className="chart-container">
-          <BarChart className="chart1" chartData={chartData} options={options} />
+          <div className = "chart1">
+          <BarChart chartData={chartData} options={options} />
+          </div>
           <div className="buttonContainer">
 	    The Mean Unsigned Error can be displayed as
             <button className="buttonP" onClick={() => buttonHandler()}>percentage of the interaction energy</button> or in 
             <button className="buttonP" onClick={() => buttonHandler2()}>kcal/mol</button>
           </div>
           <div className="Table">
-            <div style={{ color: "white" }}> <br /> *Please select either accuracy or category to sort by.*</div>
+            <div className="table-note-text"> <br /> *Please select either accuracy or category to sort by.*</div>
             <br />
             <div >
               <div className={`box ${isAnimating ? "animate" : ""}`} >
@@ -219,13 +299,10 @@ export default function App() {
 
         <div className="ending">
           <p>
-            Built by Daniel Konvicka during his internship in <a href="https://rezac.group.uochb.cz/en">Jan Řezáč group</a> at <a href="https://www.uochb.cz/en">IOCB Prague</a>
+            Built by <a href="https://github.com/Danielk5924">Daniel Konvicka</a> during his internship in <a href="https://rezac.group.uochb.cz/en">Jan Řezáč group</a> at <a href="https://www.uochb.cz/en">IOCB Prague</a>
           </p>
         </div>
 
     </div>
   );
 }
-
-
-
