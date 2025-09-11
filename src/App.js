@@ -131,13 +131,9 @@ export default function App() {
           {
             label: "number of units the Calculator was incorect by in Kcal/mol",
             data: backendData.map((data) => data.rawError),
-            backgroundColor: [
-              "rgba(75,192,192,1)",
-              "rgb(245, 175, 226)",
-              "#50AF95",
-              "#f3ba2f",
-              "#2a71d0",
-            ],
+            backgroundColor: backendData.map((data) =>
+        colors[data.category] || colors.default
+      ),
             
           },
         ],
@@ -191,13 +187,9 @@ export default function App() {
           {
             label: "Percent Error ",
             data: backendData.map((data) => (data.percentError)),
-            backgroundColor: [
-              "rgba(75,192,192,1)",
-              "rgb(245, 175, 226)",
-              "#50AF95",
-              "#f3ba2f",
-              "#2a71d0",
-            ],
+            backgroundColor: backendData.map((data) =>
+        colors[data.category] || colors.default
+      ),
             
           },
         ],
