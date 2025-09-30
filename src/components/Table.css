@@ -18,6 +18,7 @@
 .header th {
   padding: 10px 8px;
   position: relative;
+  text-align: left;
 }
 
 .header th:nth-child(3) {
@@ -28,14 +29,13 @@
 .sort-button {
   border: none;
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px); /*Potential compatibility issue here*/
   cursor: pointer;
   font-weight: 700;
   color: white;
   padding: 6px 8px;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1em;
 }
 
 .sort-button:hover {
@@ -70,17 +70,27 @@
   text-align: left;
 }
 
-.highlight {
-  background-color: #ffcccc !important; 
+.cellcategory, .cellpercentError, .cellrawError  {
+	text-align: center !important;
 }
 
-.highlight2 {
-  background-color: #95f7fc !important; 
+
+.highlight-sqm .cellcategory {
+  /*background-color: #ffcccc !important; */
+  color: #872C2C;
 }
 
-.highlight3 {
-  background-color: #8feabd !important; 
+.highlight-ml .cellcategory {
+  /*background-color: #95f7fc !important; */
+  color: #2268B8;
 }
+
+.highlight-sqmml .cellcategory {
+  /*background-color: #8feabd !important; */
+  color: #2C8737;
+}
+*/
+
 .table tbody tr:last-child .cell {
   border-bottom: none;
 }

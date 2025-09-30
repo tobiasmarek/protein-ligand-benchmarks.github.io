@@ -14,6 +14,16 @@ export default function Table({columns, modelData, func}){
 let rawData = [...modelData]; //This makes a copy of modelData, if you had done rawData=modelaData it would have altered model Data whenever you change rawData
 var [sortOn, setsortOn] = useState();
 var holder = null;
+
+var header_text = {
+	"name": "Method",
+	"category": "Category",
+	"description": "Description",
+	"references": "References",
+	"code": "Sources",
+	"percentError": "Relative error",
+	"rawError": "MUE"
+}
   
 if (sortOn !== null || sortOn !== holder){
       holder = sortOn;
@@ -34,15 +44,15 @@ if (sortOn !== null || sortOn !== holder){
     <thead className ="header">
       <tr>
         {columns.map((col) => { if (col === "percentError" || col === "category"){ return(
-          <th key={col}>
+          <th key={col} className = {"cell"+col}>
             <button onClick = {() => {func(col); setsortOn(col)}} className="sort-button">
-            {col}
+            {header_text[col]}
             </button>
           </th>)
         }else{
           return (
-            <th key={col}>
-              {col}
+            <th key={col} className = {"cell"+col}>
+              {header_text[col]}
             </th>
           )
         }
@@ -52,10 +62,10 @@ if (sortOn !== null || sortOn !== holder){
     <tbody >
       {rawData.map((row, idx) => (
         <tr key={idx}
-        className={row.category === "SQM" ? "highlight" : row.category === "ML" ? "highlight2" : row.category === "SQM+ML" ? "highlight3" : ""}
+        className={row.category === "SQM" ? "highlight-sqm" : row.category === "ML" ? "highlight-ml" : row.category === "SQM+ML" ? "highlight-sqmml" : ""}
         >
           {columns.map((col) => (
-            <td className = "cell" key={col}>
+            <td className = {"cell cell"+col}  key={col}>
               { 
               ((col === "code" || col === "references") && Array.isArray(row[col]))? 
                 row[col].map((url, idx) => (
@@ -63,7 +73,8 @@ if (sortOn !== null || sortOn !== holder){
                     <Favicon url={url} />
                   </a>
                 )) 
-                : (col === "percentError") ? (row[col].toFixed(2) +"%")
+                : (col === "percentError") ? (row[col].toFixed(2) +" %")
+                : (col === "rawError") ? (row[col].toFixed(1) +" kcal/mol")
                 : (typeof row[col] === "object" && row[col] !== null)? (JSON.stringify(row[col]))
                 : row[col]
               }

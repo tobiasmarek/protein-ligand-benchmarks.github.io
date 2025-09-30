@@ -46,7 +46,7 @@ export default function App() {
     labels: backendData.map((data) => data.name),
     datasets: [
       {
-        label: "Percent Error",
+        label: "Relative error (%)",
         data: backendData.map((data) => (data.percentError) ),
         backgroundColor: backendData.map((data) =>
         colors[data.category] || colors.default
@@ -61,7 +61,7 @@ export default function App() {
       labels: backendData.map((data) => data.name),
       datasets: [
         {
-          label: "Percent Error ",
+        label: "Relative error (%)",
           data: backendData.map((data) => (data.percentError)),
           backgroundColor: backendData.map((data) =>
         colors[data.category] || colors.default
@@ -98,7 +98,7 @@ export default function App() {
                 size: 15 
               },
               callback: function(value) {
-              return value+"%";
+              return value;
           }
         },
               title: {
@@ -106,7 +106,7 @@ export default function App() {
                 size: 17 
               },
               display: true,
-              text: 'Mean Unsigned Error, kcal/mol' // Y-axis label
+              text: 'Relative Error (%)' // Y-axis label
               }
             }
         }
@@ -129,7 +129,7 @@ export default function App() {
         labels: backendData.map((data) => data.name),
         datasets: [
           {
-            label: "number of units the Calculator was incorect by in Kcal/mol",
+            label: "Mean Unsigned Error (kcal/mol)",
             data: backendData.map((data) => data.rawError),
             backgroundColor: backendData.map((data) =>
         colors[data.category] || colors.default
@@ -162,7 +162,7 @@ export default function App() {
                 size: 15 
               },
               callback: function(value) {
-              return value+"Kcal/Mol";
+              return value;
           }
         },
               title: {
@@ -170,7 +170,7 @@ export default function App() {
                 size: 17 
               },
               display: true,
-              text: 'Relative Error' // Y-axis label
+              text: 'Mean Unsigned Error (kcal/mol)' // Y-axis label
               }
             }
         }});
@@ -217,7 +217,7 @@ export default function App() {
                 size: 15 
               },
               callback: function(value) {
-              return value+"%";
+              return value;
           }
         },
               title: {
@@ -225,7 +225,7 @@ export default function App() {
                 size: 17 
               },
               display: true,
-              text: 'Mean Unsigned Error, kcal/mol' // Y-axis label
+              text: 'Relative Error (%)' // Y-axis label
               }
             }
         }});
