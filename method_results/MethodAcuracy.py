@@ -98,7 +98,7 @@ def giveData():
     avg_Eunits = avg_error1/15
     avg_Epercent = ((avg_InteractionE1-avg_Eunits)/avg_InteractionE1)*100
     
-    newdict = {"name": "ANI2x", "category":"SQM", "description":"Under progress", "references":"", "code":""}
+    newdict = {"name": "ANI2x", "category":"SQM", "description":"2nd generation of the ANI deep learning potential", "references":["https://doi.org/10.1021/acs.jctc.0c00121"], "code":["https://github.com/aiqm/torchani"]}
     newdict["percentError"] = np.round(avg_Epercent, 3)
     newdict["rawError"] = np.round(avg_Eunits, 3)
 
