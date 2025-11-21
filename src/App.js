@@ -51,10 +51,21 @@ export default function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        const datasetList = data.datasets || [];
+        const datasetList = (data.datasets || [])
+          .slice()
+          .sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: "base" }));
         setDatasets(datasetList);
         if (datasetList.length) {
-          setActiveDatasetId((prev) => prev || datasetList[0].id);
+          setActiveDatasetId((prev) => {
+            if (prev) {
+              return prev;
+            }
+
+            const pla15Dataset = datasetList.find(
+              (dataset) => dataset.id.toLowerCase() === "pla15"
+            );
+            return (pla15Dataset && pla15Dataset.id) || datasetList[0].id;
+          });
         }
       })
       .catch((error) => console.error("Error loading JSON:", error));
