@@ -86,9 +86,32 @@ export default function App() {
   );
 
   const modelData = useMemo(() => activeDataset?.methods ?? [], [activeDataset]);
+  const sortedModelData = useMemo(() => {
+    const categoryOrder = { SQM: 0, ML: 1, "SQM+ML": 2 };
+    const metricKey = chartMetric === "percent" ? "percentError" : "rawError";
+
+    return modelData
+      .slice()
+      .sort((a, b) => {
+        const categoryDifference =
+          (categoryOrder[a.category] ?? Number.MAX_SAFE_INTEGER) -
+          (categoryOrder[b.category] ?? Number.MAX_SAFE_INTEGER);
+
+        if (categoryDifference !== 0) {
+          return categoryDifference;
+        }
+
+        const valueA =
+          typeof a[metricKey] === "number" ? a[metricKey] : Number.NEGATIVE_INFINITY;
+        const valueB =
+          typeof b[metricKey] === "number" ? b[metricKey] : Number.NEGATIVE_INFINITY;
+
+        return valueB - valueA;
+      });
+  }, [modelData, chartMetric]);
 
   useEffect(() => {
-    if (!modelData.length) {
+    if (!sortedModelData.length) {
       setChartData({ labels: [], datasets: [] });
       return;
     }
@@ -98,12 +121,12 @@ export default function App() {
     const metricKey = isPercentMetric ? "percentError" : "rawError";
 
     setChartData({
-      labels: modelData.map((data) => data.name),
+      labels: sortedModelData.map((data) => data.name),
       datasets: [
         {
           label: metricLabel,
-          data: modelData.map((data) => data[metricKey]),
-          backgroundColor: modelData.map((data) => colors[data.category] || colors.default),
+          data: sortedModelData.map((data) => data[metricKey]),
+          backgroundColor: sortedModelData.map((data) => colors[data.category] || colors.default),
         },
       ],
     });
@@ -135,7 +158,7 @@ export default function App() {
         },
       },
     });
-  }, [modelData, colors, chartMetric]);
+  }, [sortedModelData, colors, chartMetric]);
 
   function handleTable() {
     setIsAnimating(false);
@@ -219,7 +242,7 @@ export default function App() {
                 <Table
                   className="Tablemain"
                   columns={columns}
-                  modelData={modelData}
+                  modelData={sortedModelData}
                   func={() => handleTable()}
                 />
               </div>
