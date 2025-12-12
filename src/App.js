@@ -252,10 +252,34 @@ export default function App() {
 
         <div className="BP1">
           <div className="Inner-Text">
-            {(activeDataset?.description || []).map((paragraph, idx) => (
-              <p key={idx} dangerouslySetInnerHTML={{ __html: paragraph }} />
-            ))}
-            {activeDataset?.showVideo && <Video />}
+            <p>
+              This website collects the results of approximate computational chemistry methods
+              and machine learning potentials computed in the{" "}
+              <a href="https://doi.org/10.1021/acs.jcim.9b01171">PLA15 benchmark data set</a>.
+            </p>
+            <p>
+              The PLA15 dataset features 15 models of protein-ligand complexes covering the
+              interaction of the ligand with nearby amino acid residues. The systems range in size
+              from 280 to 580 atoms. Reference interaction energies were obtained from
+              fragment-based DLPNO-CCSD(T) calculations and represent the most accurate benchmark
+              available for biomolecular systems of this size.
+            </p>
+            <p>
+              The error of the tested method is expressed as a mean unsigned error and listed in
+              kcal/mol or in percent relative to the average magnitude of the reference interaction
+              energy in the set. The methods are divided into three categories: semiempirical
+              quantum-mechanical calculations (SQM), atomistic machine learning potentials (ML), and
+              the hybrid methods combining both approaches (SQM+ML).
+            </p>
+            <p>
+              More results can be added via the{" "}
+              <a href="https://github.com/protein-ligand-benchmarks/protein-ligand-benchmarks.github.io">
+                GitHub repository
+              </a>
+              , which also provides the PLA15 structures and a sample code performing the
+              calculations on them. Contributions of new data are welcome!
+            </p>
+            <Video />
           </div>
         </div>
       </div>

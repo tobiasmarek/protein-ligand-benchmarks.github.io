@@ -3,13 +3,6 @@
   "label": "PL-REX_1k",
   "title": "PL-REX_1k Protein-ligand complexes with reliable affinities.",
   "chartTitle": "Error of tested methods in the PL-REX_1k data set",
-  "description": [
-    "This website collects the results of approximate computational chemistry methods and machine learning potentials computed in the <a href=\"http://dx.doi.org/10.1038/s41467-024-45431-8\">PL-REX_1k benchmark data set</a>.",
-    "The PL-REX_1k data set contains 10 noncovalent complexes (~1000 atoms) each with a series of ligands (164 in total).",
-    "The error of the tested method is expressed as a mean unsigned error and listed in kcal/mol or in percent relative to the average magnitude of the reference interaction energy in the set. The methods are divided into three categories: semiempirical quantum-mechanical calculations (SQM), atomistic machine learning potentials (ML), and the hybrid methods combining both approaches (SQM+ML).",
-    "More results can be added via the <a href=\"https://github.com/protein-ligand-benchmarks/protein-ligand-benchmarks.github.io\">GitHub repository</a>"
-  ],
-  "showVideo": true,
   "referenceEnergies": [
     -211.986,
     -212.762,

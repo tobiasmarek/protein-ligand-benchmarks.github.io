@@ -3,13 +3,6 @@
   "label": "S66",
   "title": "S66 interaction energies in organic noncovalent complexes",
   "chartTitle": "Error of tested methods in the S66 data set",
-  "description": [
-    "This website collects the results of approximate computational chemistry methods and machine learning potentials computed in the <a href=\"https://pubs.acs.org/doi/10.1021/ct2002946\">S66 benchmark data set</a>.",
-    "The S66 data set contains 66 noncovalent complexes of organic molecules representing typical interactions in biomolecules, including hydrogen bonding, dispersion, and mixed interactions. The reference interaction energies were computed at the CCSD(T)/CBS level of theory.",
-    "The error of the tested method is expressed as a mean unsigned error and listed in kcal/mol or in percent relative to the average magnitude of the reference interaction energy in the set. The methods are divided into three categories: semiempirical quantum-mechanical calculations (SQM), atomistic machine learning potentials (ML), and the hybrid methods combining both approaches (SQM+ML).",
-    "More results can be added via the <a href=\"https://github.com/protein-ligand-benchmarks/protein-ligand-benchmarks.github.io\">GitHub repository</a>"
-  ],
-  "showVideo": true,
   "referenceEnergies": [
     -5.011,
     -5.701,

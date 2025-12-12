@@ -104,8 +104,6 @@ def _build_dataset_payload(dataset_dir, config_path, methods_path):
         "label": dataset_cfg.get("label", dataset_dir.name),
         "title": dataset_cfg.get("title", dataset_cfg.get("label", dataset_dir.name)),
         "chartTitle": dataset_cfg.get("chartTitle"),
-        "description": dataset_cfg.get("description", []),
-        "showVideo": dataset_cfg.get("showVideo", False),
         "methods": [],
     }
 
