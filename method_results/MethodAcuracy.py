@@ -1,108 +1,137 @@
-import numpy as np
-import pandas as pd
-import os
 import json
+import os
+from pathlib import Path
+
 from method_results import EnergyCalc
 
-def giveData():
 
-    
-    aniCalc = EnergyCalc.giveEnergy()
+DATASETS_ROOT = Path(__file__).resolve().parent
 
-    #This dataframe contians the confirmed interaction energies for complexes
-    #This is used to calculate the error in the calculators
-    df2 = pd.DataFrame({"IntE": [-242.583, -247.699, -88.726, -199.162, -157.143, -238.717, -94.099, -178.476, -92.145, 
-                                -231.047, -66.594, -77.382, -244.475, -127.532, -190.367  
-    ]})
 
-    Errors = []
-    PercentErrors  = []
-    wholeData = []
-    
+def _load_reference_values(reference_energies):
+    if not reference_energies:
+        raise ValueError("Each dataset must define non-empty referenceEnergies.")
+    return [float(value) for value in reference_energies]
 
-    #This Python Script uses os to iterate through all of the files in methods_with_description
-    # in order to calculate the percentage accuracy and the amount the calculators were incorrect
-    #in Kcal/Mol
 
-    counter =0
-    directory = "method_results/methods_with_description"
-    for folder in os.listdir(directory):
-        fullfolder = os.path.join(directory, folder)
-        label = os.fsdecode(fullfolder)
-        if((label.find(".DS_Store") != -1) or (label.find("_cuby_to_table") != -1)):
+def _mean_absolute(values):
+    return sum(abs(value) for value in values) / len(values)
+
+
+def _load_method_table(file_path):
+    values = []
+    with open(file_path, "r", encoding="utf-8") as handle:
+        for line in handle:
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#"):
+                continue
+            parts = stripped.split()
+            try:
+                values.append(float(parts[-1]))
+            except ValueError:
+                continue
+    return values
+
+
+def _compute_stats(values, reference_values):
+    if len(values) != len(reference_values):
+        raise ValueError("Calculated energies must match reference length.")
+    avg_error = sum(abs(calc - ref) for calc, ref in zip(values, reference_values)) / len(reference_values)
+    percent_error = (avg_error / _mean_absolute(reference_values)) * 100.0
+    return round(percent_error, 3), round(avg_error, 3)
+
+
+def _parse_method_folder(folder_path, reference_values):
+    json_path = folder_path / "method.json"
+    if not json_path.exists():
+        return None
+    with open(json_path, "r", encoding="utf-8") as handle:
+        method_meta = json.load(handle)
+
+    data_file = None
+    for file in folder_path.iterdir():
+        if file.suffix.lower() == ".txt":
+            data_file = file
+            break
+
+    if data_file is None:
+        return None
+
+    values = _load_method_table(data_file)
+    percent_error, raw_error = _compute_stats(values, reference_values)
+    method_entry = dict(method_meta)
+    method_entry["percentError"] = percent_error
+    method_entry["rawError"] = raw_error
+    return method_entry
+
+
+def _load_computed_methods(dataset_cfg, reference_values):
+    computed_methods = []
+    for computed in dataset_cfg.get("computedMethods", []):
+        ctype = computed.get("type")
+        if ctype == "torchani":
+            dataset_name = computed.get("dataset") or dataset_cfg.get("id")
+            try:
+                ani_values = EnergyCalc.giveEnergy(dataset_name)
+            except Exception as exc:
+                print(f"Skipping TorchANI data for dataset '{dataset_name}': {exc}")
+                continue
+            percent_error, raw_error = _compute_stats(ani_values, reference_values)
+            entry = {key: value for key, value in computed.items() if key not in {"type", "dataset"}}
+            entry["percentError"] = percent_error
+            entry["rawError"] = raw_error
+            computed_methods.append(entry)
+    return computed_methods
+
+
+def _iter_dataset_directories():
+    for item in DATASETS_ROOT.iterdir():
+        if not item.is_dir():
             continue
-        json_path = os.path.join(fullfolder, "method.json") 
-        currName = None
-        with open(json_path, 'r') as J:
-            obj = json.load(J)
-            currName = obj.get("name")
-        for file in os.scandir(fullfolder):
-            filename = os.fsdecode(file)
-            print(filename)
-            if filename.endswith(".txt"):    
-                print("File: " + filename)                 
-                name = os.path.join(directory, file)
-                    
-                df = pd.read_csv(filename, sep='\s+', header=None, index_col=[0], engine="python", skiprows=1)
-                #from IPython import embed; embed()
-                df.columns=['Calculations']
-                print(f"table:\n{str(df)}")
-                
-                avg_error= 0
-                for i in range(0,15): #calculates error in Kcal/Mol
-                    avg_error += np.abs(df["Calculations"].iloc[i] - df2["IntE"].iloc[i])
-                avg_error = avg_error/15
-                temptup = (currName, avg_error)
-                Errors.append(temptup)
-                
-                avg_InteractionE =0 
-                for i in range(0,15): #calculates error in percent
-                    avg_InteractionE += np.abs(df2["IntE"].iloc[i])
-                avg_InteractionE /= 15
-                avg_ErrorPer = (avg_InteractionE-avg_error)/avg_InteractionE
-                temp = (currName, avg_ErrorPer*100)
-                PercentErrors.append(temp) #For the future when making the accuracy the amoung its incorrect do 100-temp
-
-            if filename.endswith(".json"):
-                print("JSON File: " + filename)
-                with open(filename, 'r') as j:
-                    obj = json.load(j)
-                    dict ={}
-                    for key, value in obj.items():
-                        if key == "name":
-                            mName = value
-                        dict[key]= value
-        
-        for T in PercentErrors:
-            if (T[0] == mName): #looks through the tuples in percent errors to find the matching name of the method and add that to accuracy for that model
-                dict["percentError"]= np.round(100-T[1], 3)
-        for T in Errors:
-            if (T[0] == mName):
-                dict["rawError"] = np.round(T[1], 3)
-        wholeData.append(dict)
-        #print("Whole Data: " + str(wholeData))
-        PercentErrors.clear()
-        Errors.clear()
-        
-        
-                    
-    
-
-    #Adding the TorchAni calculator:
-    avg_InteractionE1 = 0
-    avg_error1 = 0
-    for value in aniCalc:
-        avg_InteractionE1 += np.abs(df2["IntE"].iloc[i])
-        avg_error1 += np.abs(aniCalc[i] - df2["IntE"].iloc[i])
-    avg_InteractionE1 /= 15
-    avg_Eunits = avg_error1/15
-    avg_Epercent = ((avg_InteractionE1-avg_Eunits)/avg_InteractionE1)*100
-    
-    newdict = {"name": "ANI2x", "category":"SQM", "description":"2nd generation of the ANI deep learning potential", "references":["https://doi.org/10.1021/acs.jctc.0c00121"], "code":["https://github.com/aiqm/torchani"]}
-    newdict["percentError"] = np.round(avg_Epercent, 3)
-    newdict["rawError"] = np.round(avg_Eunits, 3)
+        config_path = item / "dataset.json"
+        methods_path = item / "methods"
+        if config_path.exists() and methods_path.exists():
+            yield item, config_path, methods_path
 
 
-    wholeData.append(newdict)
-    return(wholeData)
+def _build_dataset_payload(dataset_dir, config_path, methods_path):
+    with open(config_path, "r", encoding="utf-8") as cfg:
+        dataset_cfg = json.load(cfg)
 
+    reference_values = _load_reference_values(dataset_cfg.get("referenceEnergies", []))
+    dataset_entry = {
+        "id": dataset_cfg.get("id", dataset_dir.name.lower()),
+        "label": dataset_cfg.get("label", dataset_dir.name),
+        "title": dataset_cfg.get("title", dataset_cfg.get("label", dataset_dir.name)),
+        "chartTitle": dataset_cfg.get("chartTitle"),
+        "methods": [],
+    }
+
+    folders = sorted(
+        [
+            child
+            for child in methods_path.iterdir()
+            if child.is_dir() and not child.name.startswith(".")
+        ],
+        key=lambda path: path.name.lower(),
+    )
+
+    for folder in folders:
+        parsed = _parse_method_folder(folder, reference_values)
+        if parsed:
+            dataset_entry["methods"].append(parsed)
+
+    dataset_entry["methods"].extend(_load_computed_methods(dataset_cfg, reference_values))
+    return dataset_entry
+
+
+def giveData():
+    datasets = []
+    for dataset_dir, config_path, methods_path in _iter_dataset_directories():
+        try:
+            datasets.append(_build_dataset_payload(dataset_dir, config_path, methods_path))
+        except Exception as exc:
+            print(f"Failed to parse dataset '{dataset_dir.name}': {exc}")
+            raise
+    datasets.sort(key=lambda item: item["label"].lower())
+    return {"datasets": datasets}

@@ -57,6 +57,28 @@ body html {
   display: inline-block;
 }
 
+.dataset-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0 20px;
+  flex-wrap: wrap;
+}
+
+.dataset-tab {
+  border: 1px solid #1f1f1f;
+  background-color: white;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.dataset-tab-active {
+  background-color: #1f1f1f;
+  color: white;
+}
+
 
 
 .edges {
@@ -118,7 +140,13 @@ body html {
   font-size: 100%;
 }
 
-.buttonP:hover {
+.buttonP:disabled {
+  color: #6c757d;
+  text-decoration: none;
+  cursor: default;
+}
+
+.buttonP:not(:disabled):hover {
   text-decoration: underline;
 }
 

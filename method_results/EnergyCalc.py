@@ -1,80 +1,56 @@
-import method_results.TorchaniCalc.DockedCalc.AniTester as Docked
 import os
-import pandas as pd
+from pathlib import Path
+
+DOCKED_IMPORT_ERROR = None
+try:
+    import method_results.TorchaniCalc.DockedCalc.AniTester as Docked
+except Exception as exc:  # pragma: no cover - optional dependency
+    Docked = None
+    DOCKED_IMPORT_ERROR = exc
 
 
-def shorten(x):
-    return x[45:-4]
-
-def difShorten(x):
-    return x[46:-4]
+DATASET_ROOT = Path(__file__).resolve().parent / "TorchaniCalc" / "datasets"
 
 
-def getEnergy(directed):
-    directory = directed
-    
+def _read_charge(file_path):
+    with open(file_path, "r", encoding="utf-8") as handle:
+        lines = handle.readlines(150)
+    return lines[1][7:] if len(lines) > 1 else 0
 
-    counter2 =-1
-    df = pd.DataFrame({'FileNames': [], 'EnergyCalculated':[]})
 
-    for file in os.scandir(directory):
-        filename = os.fsdecode(file)
-        counter2+=1
-        if filename.endswith(".xyz"): 
-            #print(os.path.join(directory, file))
-
-            #This goes through the file and takes out the charge number
-            h = open(filename)
-            # Reading from the file
-            content = h.readlines(150)
-            # Variable for storing the count to pass in as parameter
-            charge = 0
-            counter = 0
-            # Iterating through the content of the file
-            for line in content: 
-                counter+=1
-                if counter == 2: charge = line[7:]
-
-            E = Docked.runCalc(filename, charge)
-            df2 = pd.DataFrame({'FileNames': [filename], 'EnergyCalculated':[E]})
-            df = df._append(df2, ignore_index=True)
-            #print(E)
-            
-        else:
+def _collect_energies(directory):
+    if Docked is None:
+        raise RuntimeError("TorchANI calculator unavailable") from DOCKED_IMPORT_ERROR
+    energies = {}
+    for entry in os.scandir(directory):
+        if not entry.name.endswith(".xyz"):
             continue
-    
-
-    #print(df)
-    return(df)
-
-
-def sortIt(df):
-    LabelColumn = df["FileNames"]
-    if (len(df["FileNames"].iloc[0]) == 53):NewColumn = LabelColumn.apply(shorten)
-    else:NewColumn = LabelColumn.apply(difShorten)
-    df["FileNames"] = NewColumn
-    #print(df)
-    sorter = ["10GS", "2CET", "2FVD", "2OBF", "2P4Y", "2VOT", "2VW5", "2XB8", "2YKI", "2ZX6", "3G0W", "3GNW", "3NOX", "3PE2", "4GID"]
-    df.sort_values(by="FileNames", key=lambda x: x.map(sorter.index), inplace=True)
-    return df
-
-PLE = sortIt(getEnergy('method_results/TorchaniCalc/datasets/PLA15/PL'))
-LE = sortIt(getEnergy('method_results/TorchaniCalc/datasets/PLA15/L'))
-PE = sortIt(getEnergy('method_results/TorchaniCalc/datasets/PLA15/P'))
-
-#print(PLE)
-
-#Takes energy of proteia and ligand and sabrtracts them from the energy of the total complex (Finds interaction energy)
-EnergyList = []
-for i in range (0,15): EnergyList.append(PLE['EnergyCalculated'].iloc[i]-LE['EnergyCalculated'].iloc[i]-PE['EnergyCalculated'].iloc[i])
-
-def giveEnergy():
-    return (EnergyList)
+        label = Path(entry.path).stem
+        charge = _read_charge(entry.path)
+        energies[label] = Docked.runCalc(entry.path, charge)
+    return energies
 
 
+def _dataset_path(dataset_name, subfolder):
+    dataset_dir = DATASET_ROOT / dataset_name / subfolder
+    if not dataset_dir.exists():
+        raise FileNotFoundError(f"No TorchANI data for '{dataset_name}/{subfolder}'.")
+    return dataset_dir
 
 
-    
+def _energy_list(dataset_name):
+    ple = _collect_energies(_dataset_path(dataset_name, "PL"))
+    le = _collect_energies(_dataset_path(dataset_name, "L"))
+    pe = _collect_energies(_dataset_path(dataset_name, "P"))
+
+    labels = sorted(ple.keys())
+    energy_list = []
+    for label in labels:
+        if label not in le or label not in pe:
+            raise ValueError(f"Incomplete TorchANI data for '{dataset_name}' entry '{label}'.")
+        energy_list.append(ple[label] - le[label] - pe[label])
+    return energy_list
 
 
-
+def giveEnergy(dataset_name="PLA15"):
+    return _energy_list(dataset_name)

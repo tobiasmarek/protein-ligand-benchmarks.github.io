@@ -1,0 +1,7 @@
+{
+	"name":	"AIQM2",
+	"category": "SQM+ML",
+	"description": "GFN2-xTB(*) with ML correction",
+	"references": ["https://doi.org/10.1039/D5SC02802G"],
+	"code": ["https://github.com/dralgroup/mlatom/"]
+}

@@ -1,0 +1,67 @@
+# Interaction energies in kcal/mol
+Water ... Water           -4.762
+Water ... MeOH            -5.598
+Water ... MeNH2           -6.337
+Water ... Peptide         -8.190
+MeOH ... MeOH             -5.881
+MeOH ... MeNH2            -7.034
+MeOH ... Peptide          -8.609
+MeOH ... Water            -4.949
+MeNH2 ... MeOH            -3.078
+MeNH2 ... MeNH2           -3.690
+MeNH2 ... Peptide         -5.538
+MeNH2 ... Water           -6.896
+Peptide ... MeOH          -6.175
+Peptide ... MeNH2         -6.858
+Peptide ... Peptide       -8.694
+Peptide ... Water         -4.699
+Uracil ... Uracil (BP)   -17.291
+Water ... Pyridine        -6.379
+MeOH ... Pyridine         -7.090
+AcOH ... AcOH            -17.801
+AcNH2 ... AcNH2          -16.457
+AcOH ... Uracil          -18.830
+AcNH2 ... Uracil         -19.621
+Benzene ... Benzene (pi-pi)  -3.187
+Pyridine ... Pyridine (pi-pi)  -4.200
+Uracil ... Uracil (pi-pi) -10.629
+Benzene ... Pyridine (pi-pi)  -3.697
+Benzene ... Uracil (pi-pi)  -5.884
+Pyridine ... Uracil (pi-pi)  -7.336
+Benzene ... Ethene        -2.109
+Uracil ... Ethene         -3.739
+Uracil ... Ethyne         -3.950
+Pyridine ... Ethene       -2.377
+Pentane ... Pentane       -4.290
+Neopentane ... Pentane    -3.248
+Neopentane ... Neopentane  -2.468
+Cyclopentane ... Neopentane  -3.269
+Cyclopentane ... Cyclopentane  -3.778
+Benzene ... Cyclopentane  -3.858
+Benzene ... Neopentane    -3.070
+Uracil ... Pentane        -5.798
+Uracil ... Cyclopentane   -5.245
+Uracil ... Neopentane     -3.981
+Ethene ... Pentane        -2.748
+Ethyne ... Pentane        -3.074
+Peptide ... Pentane       -4.484
+Benzene ... Benzene (TS)  -2.975
+Pyridine ... Pyridine (TS)  -3.396
+Benzene ... Pyridine (TS)  -3.369
+Benzene ... Ethyne (CH-pi)  -3.395
+Ethyne ... Ethyne (TS)    -1.747
+Benzene ... AcOH (OH-pi)  -5.814
+Benzene ... AcNH2 (NH-pi)  -4.493
+Benzene ... Water (OH-pi)  -4.159
+Benzene ... MeOH (OH-pi)  -4.829
+Benzene ... MeNH2 (NH-pi)  -3.651
+Benzene ... Peptide (NH-pi)  -5.464
+Pyridine ... Pyridine (CH-N)  -3.247
+Ethyne ... Water (CH-O)   -2.114
+Ethyne ... AcOH (OH-pi)   -4.925
+Pentane ... AcOH          -3.932
+Pentane ... AcNH2         -4.285
+Benzene ... AcOH          -4.027
+Peptide ... Ethene        -3.183
+Pyridine ... Ethyne       -3.067
+MeNH2 ... Pyridine        -3.701

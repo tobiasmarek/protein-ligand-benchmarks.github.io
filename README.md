@@ -1,11 +1,16 @@
 # Usage
 Hello, Welcome to the protein-ligand-benchmarks github repository! 
 
-If you would like to add a model to the bar chart and table please add a new folder to the methods_with_description folder(inside of method_results) which is named after the model you are adding. The folder should include a json file with the correct keys and values as seen in the previous examples. It should also include a .txt file which has the interaction energies for each system as modeled in the other .txt files. 
+If you would like to add a model to the bar chart and table, first locate the dataset you want to extend inside `method_results/<dataset_name>/methods/` (for example `method_results/PLA15/methods/`). Add a new folder that matches the model name and populate it with:
+
+1. `method.json` – metadata describing the method (see existing folders for the expected keys such as `name`, `category`, `description`, `references`, `code`).
+2. A `.txt` file that lists the interaction energies for each system in the dataset (the formatting is the same as in the other folders).
+
+Adding a brand new dataset follows the same idea: create `method_results/<dataset_name>/`, add a `dataset.json` file with the dataset metadata (title, description, referenceEnergies, etc.), and place all method folders into the nested `methods/` directory. Once those files are in place, run `python Backend.py` to rebuild `public/data.json`; after that the UI will automatically create a new tab for the dataset.
 
 If you would like to try a new calculator and compare it to the existing ones on the graph please follow the format used for the TorchAni2x model. Create a new file similar to AniTester.py, which will be the same except for the calculator, which will be equal to the new calculator you wish to test. Then in EnergyCalc.py change the initial import statment to: "import method_results.TorchaniCalc.DockedCalc.{New_Calculator_Tester.py} as Docked". Finally, change the "newdict" variable to include the proper description for your new model.
 
-once you have added a new folder or implemented a new calculator, run "python Backend.py" in a terminal under the "protein-ligand-benchmarks.github.io" directory. This will update the data file in public, and will update your local website. If you would like to submit these changes to the github.io site please reach out to us! 
+Whenever you add or modify methods (within an existing dataset) or introduce a new calculator/dataset, run `python Backend.py` in a terminal under the `protein-ligand-benchmarks.github.io` directory. This refreshes `public/data.json` so the React app picks up your changes. If you would like to submit these changes to the github.io site please reach out to us! 
 
 Thanks for Visiting!
 
