@@ -10,6 +10,8 @@ import logo from "./github-mark.png";
 Chart.register(CategoryScale);
 
 const columns = ["name", "category", "description", "references", "code", "percentError", "rawError"];
+const hiddenDatasetIds = ["pl-rex_1k", "s66"];
+const hiddenDatasetIdSet = new Set(hiddenDatasetIds.map((id) => id.toLowerCase()));
 
 export default function App() {
   const [datasets, setDatasets] = useState([]);
@@ -52,6 +54,7 @@ export default function App() {
       .then((response) => response.json())
       .then((data) => {
         const datasetList = (data.datasets || [])
+          .filter((dataset) => !hiddenDatasetIdSet.has((dataset.id || "").toLowerCase()))
           .slice()
           .sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: "base" }));
         setDatasets(datasetList);
