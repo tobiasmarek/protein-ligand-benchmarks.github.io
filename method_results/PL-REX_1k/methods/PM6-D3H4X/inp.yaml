@@ -1,0 +1,13 @@
+job: dataset
+dataset: PL-REX_1k_mozyme
+dataset_skip_tag: zinc
+
+
+interface: mopac
+method: pm6
+mopac_precise: yes
+mopac_mozyme: yes
+
+mopac_corrections: d3h4x
+
+#job_cleanup: no

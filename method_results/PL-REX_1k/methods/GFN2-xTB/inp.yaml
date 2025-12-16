@@ -1,0 +1,13 @@
+job: dataset
+dataset: PL-REX_1k
+dataset_skip_tag: zinc
+
+
+interface: xtb
+method: GFN2-xTB
+
+
+xtb_etemp_restart: 2000
+xtb_etemp_restart2: 600
+xtb_options: "--iterations 500 --acc 2"
+

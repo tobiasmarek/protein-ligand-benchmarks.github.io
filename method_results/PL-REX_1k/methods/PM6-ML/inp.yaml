@@ -1,0 +1,21 @@
+job: dataset
+dataset: PL-REX_1k_mozyme
+dataset_skip_tag: zinc
+
+
+interface: mopac
+method: pm6
+mopac_precise: yes
+mopac_mozyme: yes
+
+modifiers: torchmdnet, dftd3
+modifier_torchmdnet:
+  torchmd_model: /home/rezac/GitHub-Public/MOPAC-ML/models/PM6-ML_correction_seed8_best.ckpt
+modifier_dftd3:
+  d3_hh_fix: no
+  d3_damping: bj
+  d3_s6: 1.0
+  d3_s8: 0.3908
+  d3_a1: 0.566
+  d3_a2: 3.128
+  d3_3body: no

@@ -1,0 +1,13 @@
+job: dataset
+dataset: PL-REX_1k_mozyme
+dataset_skip_tag: zinc
+
+
+interface: mopac
+method: pm7
+mopac_precise: yes
+mopac_mozyme: yes
+
+mopac_relscf: 0.1
+mopac_damp_scf: 0.5
+
