@@ -11,8 +11,10 @@ Chart.register(CategoryScale);
 
 const columns = ["name", "category", "description", "references", "code", "percentError", "rawError"];
 const mainDatasetId = "pla15_tz+ccsdtpc"; // For now, it is always some PLA15 dataset
-const hiddenDatasetIds = ["pla15_dlpno-ccsdt"]; //["s66"]; // "pl-rex_1k"
+const hiddenDatasetIds = ["s66", "pla15_dlpno-ccsdt", "pla15_h-nod", "pla15_h-nod-3b", "plfrag547_iv+tz+d", "plfrag547_h-nod", "plfrag547_h-nod-3b", "solv-pla15_h-nod", "solv-pla15_h-nod-3b", "solv-plfrag547_h-nod", "solv-plfrag547_h-nod-3b"];
 const hiddenDatasetIdSet = new Set(hiddenDatasetIds.map((id) => id.toLowerCase()));
+const hiddenMethodNames = ["PM6-Allegro-0.21"];
+const hiddenMethodNameSet = new Set(hiddenMethodNames.map((name) => name.toLowerCase()));
 
 export default function App() {
   const [datasets, setDatasets] = useState([]);
@@ -90,7 +92,13 @@ export default function App() {
     [datasets, activeDatasetId]
   );
 
-  const modelData = useMemo(() => activeDataset?.methods ?? [], [activeDataset]);
+  const modelData = useMemo(
+    () =>
+      (activeDataset?.methods ?? []).filter(
+        (method) => !hiddenMethodNameSet.has((method.name || "").toLowerCase())
+      ),
+    [activeDataset]
+  );
   const sortedModelData = useMemo(() => {
     const categoryOrder = { SQM: 0, ML: 1, "SQM+ML": 2, DFT: 3 };
     const metricKey = chartMetric === "percent" ? "percentError" : "rawError";
