@@ -10,7 +10,8 @@ import logo from "./github-mark.png";
 Chart.register(CategoryScale);
 
 const columns = ["name", "category", "description", "references", "code", "percentError", "rawError"];
-const hiddenDatasetIds = ["s66"]; // "pl-rex_1k"
+const mainDatasetId = "pla15_tz+ccsdtpc"; // For now, it is always some PLA15 dataset
+const hiddenDatasetIds = ["pla15_dlpno-ccsdt"]; //["s66"]; // "pl-rex_1k"
 const hiddenDatasetIdSet = new Set(hiddenDatasetIds.map((id) => id.toLowerCase()));
 
 export default function App() {
@@ -65,7 +66,7 @@ export default function App() {
             }
 
             const pla15Dataset = datasetList.find(
-              (dataset) => dataset.id.toLowerCase() === "pla15"
+              (dataset) => dataset.id.toLowerCase() === mainDatasetId.toLowerCase()
             );
             return (pla15Dataset && pla15Dataset.id) || datasetList[0].id;
           });
@@ -79,6 +80,7 @@ export default function App() {
       SQM: "rgba(240, 130, 130, 1)",
       ML: "rgba(160, 221, 241, 1)",
       "SQM+ML": "#86fab6ff",
+      DFT: "rgba(19, 36, 92, 1)",
       default: "#fdfeffff",
     };
   }, []);
@@ -90,7 +92,7 @@ export default function App() {
 
   const modelData = useMemo(() => activeDataset?.methods ?? [], [activeDataset]);
   const sortedModelData = useMemo(() => {
-    const categoryOrder = { SQM: 0, ML: 1, "SQM+ML": 2 };
+    const categoryOrder = { SQM: 0, ML: 1, "SQM+ML": 2, DFT: 3 };
     const metricKey = chartMetric === "percent" ? "percentError" : "rawError";
 
     return modelData
