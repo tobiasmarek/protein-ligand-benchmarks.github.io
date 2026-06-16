@@ -10,10 +10,10 @@ import logo from "./github-mark.png";
 Chart.register(CategoryScale);
 
 const columns = ["name", "category", "description", "references", "code", "percentError", "rawError"];
-const mainDatasetId = "pla15_tz+ccsdtpc"; // For now, it is always some PLA15 dataset
-const hiddenDatasetIds = ["s66", "pla15_dlpno-ccsdt", "pla15_h-nod", "pla15_h-nod-3b", "plfrag547_iv+tz+d", "plfrag547_h-nod", "plfrag547_h-nod-3b", "solv-pla15_h-nod", "solv-pla15_h-nod-3b", "solv-plfrag547_h-nod", "solv-plfrag547_h-nod-3b"];
+const mainDatasetId = "pla15_h-nod+ccsdtpc-3b"; // For now, it is always some PLA15 dataset
+const hiddenDatasetIds = ["s66", "pla15_dlpno-ccsdt", "pla15_tz+ccsdtpc", "pla15_h-nod", "pla15_h-nod-3b", "plfrag547_iv+tz+d", "plfrag547_h-nod", "plfrag547_h-nod-3b", "solv-pla15_h-nod", "solv-pla15_h-nod-3b", "solv-plfrag547_h-nod", "solv-plfrag547_h-nod-3b"];
 const hiddenDatasetIdSet = new Set(hiddenDatasetIds.map((id) => id.toLowerCase()));
-const hiddenMethodNames = ["PM6-Allegro-0.21"];
+const hiddenMethodNames = ["PM6-Allegro-0.21", "PM6-Allegro-0.41"];
 const hiddenMethodNameSet = new Set(hiddenMethodNames.map((name) => name.toLowerCase()));
 
 export default function App() {
