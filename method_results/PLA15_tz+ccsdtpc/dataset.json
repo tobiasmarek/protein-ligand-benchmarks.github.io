@@ -1,6 +1,6 @@
 {
   "id": "pla15_tz+ccsdtpc",
-  "label": "PLA15",
+  "label": "PLA15/tz+ccsdtpc",
   "title": "PLA15 Protein-ligand interaction energy benchmarks",
   "chartTitle": "Error of tested methods in the PLA15 data set",
   "referenceEnergies": {
